@@ -1,19 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 3.2.4
+-- version 3.3.9
 -- http://www.phpmyadmin.net
 --
 -- 主机: localhost
--- 生成日期: 2014 年 02 月 23 日 12:27
--- 服务器版本: 5.1.41
--- PHP 版本: 5.3.1
+-- 生成日期: 2014 年 02 月 23 日 15:20
+-- 服务器版本: 5.5.8
+-- PHP 版本: 5.3.5
 
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
-
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
 
 --
 -- 数据库: `chatroom`
@@ -476,7 +470,7 @@ CREATE TABLE IF NOT EXISTS `ch_charge` (
   `add_point` float NOT NULL COMMENT '充值点数',
   `minus_point` float NOT NULL COMMENT '扣点点数',
   `operator` int(10) NOT NULL COMMENT '操作者ID',
-  `delete` int(10) NOT NULL DEFAULT '0' COMMENT '标记删除',
+  `delele_flag` int(10) NOT NULL DEFAULT '0' COMMENT '标记删除',
   PRIMARY KEY (`cid`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=33 ;
 
@@ -484,10 +478,10 @@ CREATE TABLE IF NOT EXISTS `ch_charge` (
 -- 转存表中的数据 `ch_charge`
 --
 
-INSERT INTO `ch_charge` (`cid`, `charge_time`, `uid`, `add_point`, `minus_point`, `operator`, `delete`) VALUES
-(2, '1393144222', 5, 100, 0, 1, 0),
-(3, '1393144223', 6, 100, 0, 1, 0),
-(4, '1393144224', 7, 100, 0, 1, 0),
+INSERT INTO `ch_charge` (`cid`, `charge_time`, `uid`, `add_point`, `minus_point`, `operator`, `delele_flag`) VALUES
+(2, '1393144222', 5, 100, 0, 1, 1),
+(3, '1393144223', 6, 200, 0, 1, 0),
+(4, '1393144224', 7, 50, 0, 1, 0),
 (5, '1393144225', 8, 100, 0, 1, 0),
 (6, '1393144226', 9, 100, 0, 1, 0),
 (7, '1393144227', 10, 100, 0, 1, 0),
@@ -529,7 +523,7 @@ CREATE TABLE IF NOT EXISTS `ch_chat` (
   `uid2` int(10) NOT NULL COMMENT '被聊天会员ID',
   `content` varchar(800) NOT NULL COMMENT '聊天内容',
   `create_time` varchar(100) NOT NULL COMMENT '聊天时间',
-  `delete` int(10) NOT NULL DEFAULT '0' COMMENT '标记删除',
+  `delele_flag` int(10) NOT NULL DEFAULT '0' COMMENT '标记删除',
   PRIMARY KEY (`cid`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=22 ;
 
@@ -537,7 +531,7 @@ CREATE TABLE IF NOT EXISTS `ch_chat` (
 -- 转存表中的数据 `ch_chat`
 --
 
-INSERT INTO `ch_chat` (`cid`, `uid1`, `uid2`, `content`, `create_time`, `delete`) VALUES
+INSERT INTO `ch_chat` (`cid`, `uid1`, `uid2`, `content`, `create_time`, `delele_flag`) VALUES
 (1, 4, 5, '2014-02-23 09:02:02的聊天內容很好，相當好，不錯', '1393147322', 0),
 (2, 5, 6, '2014-02-23 09:02:03的聊天內容很好，相當好，不錯', '1393147323', 0),
 (3, 6, 7, '2014-02-23 09:02:04的聊天內容很好，相當好，不錯', '1393147324', 0),
@@ -570,7 +564,7 @@ CREATE TABLE IF NOT EXISTS `ch_evaluate` (
   `content` varchar(800) NOT NULL COMMENT '评论内容',
   `create_time` varchar(100) NOT NULL COMMENT '评论时间',
   `rank` int(10) NOT NULL COMMENT '评论等级',
-  `delete` int(10) NOT NULL DEFAULT '0' COMMENT '标记删除',
+  `delele_flag` int(10) NOT NULL DEFAULT '0' COMMENT '标记删除',
   PRIMARY KEY (`eid`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=32 ;
 
@@ -578,7 +572,7 @@ CREATE TABLE IF NOT EXISTS `ch_evaluate` (
 -- 转存表中的数据 `ch_evaluate`
 --
 
-INSERT INTO `ch_evaluate` (`eid`, `uid1`, `uid2`, `content`, `create_time`, `rank`, `delete`) VALUES
+INSERT INTO `ch_evaluate` (`eid`, `uid1`, `uid2`, `content`, `create_time`, `rank`, `delele_flag`) VALUES
 (2, 5, 6, '很好，相當好，不錯', '1393145666', 3, 0),
 (3, 6, 7, '很好，相當好，不錯', '1393145667', 1, 0),
 (4, 7, 8, '很好，相當好，不錯', '1393145668', 2, 0),
@@ -656,7 +650,7 @@ CREATE TABLE IF NOT EXISTS `ch_user` (
   `last_login_time` varchar(100) NOT NULL COMMENT '上次登录时间',
   `chat_time_limit` int(10) NOT NULL COMMENT '聊天次数限定',
   `chat_one_time_fee` float NOT NULL COMMENT '每一次聊天费用',
-  `delete` int(10) NOT NULL DEFAULT '0' COMMENT '标记是否删除（1为删除 0为未删除）',
+  `delele_flag` int(10) NOT NULL DEFAULT '0' COMMENT '标记是否删除（1为删除 0为未删除）',
   PRIMARY KEY (`uid`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=36 ;
 
@@ -664,11 +658,11 @@ CREATE TABLE IF NOT EXISTS `ch_user` (
 -- 转存表中的数据 `ch_user`
 --
 
-INSERT INTO `ch_user` (`uid`, `name`, `pass`, `nick`, `email`, `imgurl`, `age`, `height`, `status`, `area_level1_id`, `area_level2_id`, `type`, `rank`, `info`, `introduction`, `point`, `reg_time`, `last_login_time`, `chat_time_limit`, `chat_one_time_fee`, `delete`) VALUES
+INSERT INTO `ch_user` (`uid`, `name`, `pass`, `nick`, `email`, `imgurl`, `age`, `height`, `status`, `area_level1_id`, `area_level2_id`, `type`, `rank`, `info`, `introduction`, `point`, `reg_time`, `last_login_time`, `chat_time_limit`, `chat_one_time_fee`, `delele_flag`) VALUES
 (4, '張三', 'e10adc3949ba59abbe56e057f20f883e', 'splot', 'splot@163.com', 'http://133.mi688.com/img/avatar-2.png', 16, 170, 0, 1, 1, 1, 1, '個人介紹信息', '個人簡介信息', 100, '1393155600', '', 10, 0, 0),
 (5, '李四', 'e10adc3949ba59abbe56e057f20f883e', 'adfsd', 'adfsd@163.com', 'http://133.mi688.com/img/avatar-2.png', 16, 170, 0, 1, 1, 1, 1, '個人介紹信息', '個人簡介信息', 100, '1393155600', '', 10, 0, 0),
-(6, '王五', 'e10adc3949ba59abbe56e057f20f883e', '235325', '235325@163.com', 'http://133.mi688.com/img/avatar-2.png', 16, 170, 0, 1, 1, 1, 1, '個人介紹信息', '個人簡介信息', 100, '1393155600', '', 10, 0, 0),
-(7, '小小', 'e10adc3949ba59abbe56e057f20f883e', '3dsfs', '3dsfs@163.com', 'http://133.mi688.com/img/avatar-2.png', 16, 170, 0, 1, 1, 1, 1, '個人介紹信息', '個人簡介信息', 100, '1393155600', '', 10, 0, 0),
+(6, '王五', 'e10adc3949ba59abbe56e057f20f883e', '235325', '235325@163.com', 'http://133.mi688.com/img/avatar-2.png', 16, 170, 0, 1, 1, 1, 1, '個人介紹信息', '個人簡介信息', 200, '1393155600', '', 10, 0, 0),
+(7, '小小', 'e10adc3949ba59abbe56e057f20f883e', '3dsfs', '3dsfs@163.com', 'http://133.mi688.com/img/avatar-2.png', 16, 170, 0, 1, 1, 1, 1, '個人介紹信息', '個人簡介信息', 50, '1393155600', '', 10, 0, 0),
 (8, '芳明', 'e10adc3949ba59abbe56e057f20f883e', 'df3rwe', 'df3rwe@163.com', 'http://133.mi688.com/img/avatar-2.png', 16, 170, 0, 1, 1, 1, 1, '個人介紹信息', '個人簡介信息', 100, '1393155600', '', 10, 0, 0),
 (9, '大喵', 'e10adc3949ba59abbe56e057f20f883e', 'vbvb', 'vbvb@163.com', 'http://133.mi688.com/img/avatar-2.png', 16, 170, 0, 1, 1, 1, 1, '個人介紹信息', '個人簡介信息', 100, '1393155600', '', 10, 0, 0),
 (10, '在天上', 'e10adc3949ba59abbe56e057f20f883e', 'gfre', 'gfre@163.com', 'http://133.mi688.com/img/avatar-2.png', 16, 170, 0, 1, 1, 1, 1, '個人介紹信息', '個人簡介信息', 100, '1393155600', '', 10, 0, 0),
@@ -697,7 +691,3 @@ INSERT INTO `ch_user` (`uid`, `name`, `pass`, `nick`, `email`, `imgurl`, `age`, 
 (33, '九悔', 'e10adc3949ba59abbe56e057f20f883e', 'ooooo', 'ooooo@163.com', 'http://133.mi688.com/img/avatar-2.png', 16, 170, 0, 1, 1, 1, 1, '個人介紹信息', '個人簡介信息', 100, '1393155600', '', 10, 0, 0),
 (34, '九尾', 'e10adc3949ba59abbe56e057f20f883e', 'llklklk', 'llklklk@163.com', 'http://133.mi688.com/img/avatar-2.png', 16, 170, 0, 1, 1, 1, 1, '個人介紹信息', '個人簡介信息', 100, '1393155600', '', 10, 0, 0),
 (35, '佐助', 'e10adc3949ba59abbe56e057f20f883e', 'yuiuii', 'yuiuii@163.com', 'http://133.mi688.com/img/avatar-2.png', 16, 170, 0, 1, 1, 1, 1, '個人介紹信息', '個人簡介信息', 100, '1393155600', '', 10, 0, 0);
-
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

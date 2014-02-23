@@ -34,9 +34,10 @@
                                 <td><{$evaluates[ls].name1}></td>
                                 <td><{$evaluates[ls].content}></td>
                                 <td><{$evaluates[ls].name2}></td>
-                                <td><{$evaluates[ls].rank}></td>
+                                <td class="rank" data-rank="<{$evaluates[ls].rank}>"><{$evaluates[ls].rank_info}></td>
                                 <td>
                                     <a href="#" class="delete label label-success" data-id="<{$evaluates[ls].eid}>">刪除</a>
+                                    <a href="#" style="display:none;" class="save label label-success" data-id="<{$evaluates[ls].eid}>">保存</a>
                                 </td>
                               </tr>
                           <{/section}>
@@ -68,6 +69,45 @@
             .done(function(data) {
                 if(data.errNo == 0){
                     $(me).parents("tr").remove();
+                }else{
+                    alert("服务器异常，请稍后再试~~");
+                }
+            });  
+        });
+
+        $(".rank").on("click",function(){
+            if($(this).children('select').length > 0){
+                return;
+            }
+            var me   = this;
+            var html = "<select class='ui-select rank-select'><option value='1'>優良</option><option value='2'>普通</option><option value='3'>差</option></select>";
+            var rank = $(this).attr('data-rank');
+            $(this).html(html);
+            $('.rank-select',$(this).parents('tr')).val(rank);
+            $(".save",$(this).parents('tr')).show();
+        });
+        $(".save").on('click',function(){
+            var me   = this;
+            var eid  = $(this).attr('data-id');
+            var rank = $('.rank-select',$(this).parents('tr')).val();
+            
+            $.ajax({
+                url: siteurl + "/evaluates/changeRank",
+                type: 'post',
+                dataType: 'json',
+                data: {eid: eid,rank: rank},
+            })
+            .done(function(data) {
+                if(data.errNo == 0){
+                    var rankInfo = "優良";
+                    if(rank == 2){
+                        var rankInfo = "普通";
+                    }
+                    if(rank == 3){
+                        var rankInfo = "差";
+                    }
+                    $(".rank",$(me).parents('tr')).html(rankInfo);
+                    $(me).hide();
                 }else{
                     alert("服务器异常，请稍后再试~~");
                 }

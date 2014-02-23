@@ -6,15 +6,15 @@
                 return;
             }
             $eval = D('evaluate');
-            $page = new Page($eval->where(array("delete"=>0))->total(),PAGESIZE,"");
+            $page = new Page($eval->where(array("delele_flag"=>0))->total(),PAGESIZE,"");
                        
-            $evalRes = $eval->where(array("delete"=>0))->limit($page->limit)->select();
+            $evalRes = $eval->where(array("delele_flag"=>0))->limit($page->limit)->select();
 
             $user  = D('user');
             $userArr  = array();
             foreach($evalRes as $key => $item){
                 $evalRes[$key]['create_time'] = date('Y-m-d H:i:s',$evalRes[$key]['create_time']);
-                $evalRes[$key]['rank'] = getRankByType($evalRes[$key]['rank']);
+                $evalRes[$key]['rank_info'] = getRankByType($evalRes[$key]['rank']);
                 $userId1  = $evalRes[$key]['uid1'];
                 $userId2  = $evalRes[$key]['uid2'];
                 
@@ -48,8 +48,22 @@
             );
             
             $eval = D('evaluate');
-            $evalRes = $eval->where("eid=".$_POST['eid'])->update('delete=1');
+            $evalRes = $eval->where("eid=".$_POST['eid'])->update('delele_flag=1');
             
             echo json_encode($ret);
-        }   	
+        }
+
+        function changeRank(){
+            $ret = array(
+                "errNo"=>0
+            );
+            
+            $eid   = $_POST['eid'];
+            $rank  = $_POST['rank'];
+
+            $eval    = D('evaluate');
+            $eval->where("eid=".$eid)->update('rank='.$rank);
+            
+            echo json_encode($ret);
+        }    	
 	}

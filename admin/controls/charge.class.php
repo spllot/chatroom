@@ -7,9 +7,9 @@
             }
 
             $charge = D('charge');
-            $page = new Page($charge->where(array("delete"=>0))->total(),PAGESIZE,"");
+            $page = new Page($charge->where(array("delele_flag"=>0))->total(),PAGESIZE,"");
                        
-            $chargeRes = $charge->where(array("delete"=>0))->limit($page->limit)->select();
+            $chargeRes = $charge->where(array("delele_flag"=>0))->limit($page->limit)->select();
 
             $admin = D('admin');
             $user  = D('user');
@@ -53,8 +53,34 @@
             );
             
             $charge = D('charge');
-            $chargeRes = $charge->where("cid=".$_POST['cid'])->update('delete=1');
+            $chargeRes = $charge->where("cid=".$_POST['cid'])->update('delele_flag=1');
             
             echo json_encode($ret);
-        }   	
+        } 
+
+        function changePoint(){
+            $ret = array(
+                "errNo"=>0
+            );
+            
+            $cid      = $_POST['cid'];
+            $oldPoint = $_POST['oldPoint'];
+            $newPoint = $_POST['newPoint'];
+            $addPoint = $newPoint - $oldPoint;
+
+            $charge    = D('charge');
+            $charge->where("cid=".$cid)->update('add_point='.$newPoint);
+
+            $chargeRes = $charge->where("cid=".$_POST['cid'])->select();
+            $uid       = $chargeRes[0]['uid'];
+            $user      = D('user');
+
+            $userRes   = $user->where("uid=".$uid)->select();
+            $point     = $userRes[0]['point'] + $addPoint;
+
+            $user->where("uid=".$uid)->update('point='.$point);
+
+            $ret['remain_point'] = $point;
+            echo json_encode($ret);
+        }  	
 	}

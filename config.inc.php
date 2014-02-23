@@ -23,6 +23,6 @@
 	*/
 	define("NUM",10);
     //网站首页
-	define("SITEURL", "http://localhost:8099/chatroom/admin.php");
+	define("SITEURL", "http://localhost:8080/chatroom/admin.php");
     //分页大小
     define("PAGESIZE", 10);

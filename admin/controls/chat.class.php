@@ -7,9 +7,9 @@
             }
 
             $chat = D('chat');
-            $page = new Page($chat->where(array("delete"=>0))->total(),PAGESIZE,"");
+            $page = new Page($chat->where(array("delele_flag"=>0))->total(),PAGESIZE,"");
                        
-            $chatRes = $chat->where(array("delete"=>0))->limit($page->limit)->select();
+            $chatRes = $chat->where(array("delele_flag"=>0))->limit($page->limit)->select();
 
             $user  = D('user');
             $userArr  = array();
@@ -53,7 +53,7 @@
             );
             
             $chat  = D('chat');
-            $chatRes = $chat->where("cid=".$_POST['cid'])->update('delete=1');
+            $chatRes = $chat->where("cid=".$_POST['cid'])->update('delele_flag=1');
             
             echo json_encode($ret);
         }	

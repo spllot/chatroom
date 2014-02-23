@@ -6,8 +6,8 @@
                 return;
             }
             $user = D('user');
-            $page = new Page($user->where(array("delete"=>0))->total(),PAGESIZE,"");              
-            $userRes = $user->where(array("delete"=>0))->limit($page->limit)->select();
+            $page = new Page($user->where(array("delele_flag"=>0))->total(),PAGESIZE,"");              
+            $userRes = $user->where(array("delele_flag"=>0))->limit($page->limit)->select();
 
             foreach($userRes as $key => $item){
                 $userRes[$key]['type'] = getUserType($userRes[$key]['type']);
@@ -99,11 +99,11 @@
                 "errNo"=>0
             );
 			$admin  = D('admin');
-            $where = "name='".$_POST['name']."') AND pass='".md5($_POST['pass'])."'";
+            $where = "name='".$_POST['name']."' AND pass='".md5($_POST['pass'])."'";
             $userRes = $admin->where($where)->select();
             if($userRes && count($userRes)>0){
                 $_SESSION['name'] = $_POST['name'];
-                $_SESSION['uid']  = $userRes[0]['uid'];
+                $_SESSION['uid']  = $userRes[0]['id'];
             }
             else{
                 $ret['errNo'] = 1;
@@ -131,7 +131,7 @@
             );
             
             $user = D('user');
-            $userRes = $user->where("uid=".$_POST['uid'])->update('delete=1');
+            $userRes = $user->where("uid=".$_POST['uid'])->update('delele_flag=1');
             
             echo json_encode($ret);
         }

@@ -33,12 +33,13 @@
                               <tr>
                                 <td><{$charges[ls].charge_time}></td>
                                 <td><{$charges[ls].name}></td>
-                                <td><{$charges[ls].add_point}></td>
+                                <td class="add-point"><{$charges[ls].add_point}></td>
                                 <td><{$charges[ls].minus_point}></td>
-                                <td><{$charges[ls].point}></td>
+                                <td class="remain-point"><{$charges[ls].point}></td>
                                 <td><{$charges[ls].operator}></td>
                                 <td>
                                     <a href="#" class="delete label label-success" data-id="<{$charges[ls].cid}>">刪除</a>
+                                    <a href="#" style="display:none;" class="save label label-success" data-id="<{$charges[ls].cid}>" data-uid="<{$charges[ls].uid}>">保存</a>
                                 </td>
                               </tr>
                           <{/section}>
@@ -70,6 +71,41 @@
             .done(function(data) {
                 if(data.errNo == 0){
                     $(me).parents("tr").remove();
+                }else{
+                    alert("服务器异常，请稍后再试~~");
+                }
+            });  
+        });
+
+        $(".add-point").on("click",function(){
+            if($(this).children('input').length > 0){
+                return;
+            }
+            var me = this;
+            var oldPoint = parseInt($(this).html());
+            $(this).html('<input type="text" data-old="'+oldPoint+'" class="add-point-input ui-input" value="'+oldPoint+'"/>');
+            $(".save",$(this).parents('tr')).show();
+        });
+        $(".save").on('click',function(){
+            var me = this;
+            var cid = $(this).attr('data-id');
+            var oldPoint = $(".add-point-input",$(this).parents('tr')).attr('data-old');
+            var newPoint = $(".add-point-input",$(this).parents('tr')).val();
+            if(!$.isNumeric(newPoint)){
+                alert("充值點數必須是數字");
+                return;
+            }
+            $.ajax({
+                url: siteurl + "/charge/changePoint",
+                type: 'post',
+                dataType: 'json',
+                data: {cid: cid,oldPoint: oldPoint,newPoint: newPoint},
+            })
+            .done(function(data) {
+                if(data.errNo == 0){
+                    $(".add-point",$(me).parents('tr')).html(newPoint);
+                    $(".remain-point",$(me).parents('tr')).html(data.remain_point);
+                    $(me).hide();
                 }else{
                     alert("服务器异常，请稍后再试~~");
                 }
