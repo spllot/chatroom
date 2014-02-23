@@ -22,7 +22,8 @@
                             <th style="width:20%">聊天時間</th>
                             <th style="width:15%">會員帳號</th>
                             <th style="width:15%">對話會員帳號</th>
-                            <th style="width:50%">對話內容</th>
+                            <th style="width:40%">對話內容</th>
+                            <th style="width:10%">操作</th>
                           </tr>
                         </thead>
                         <tbody>
@@ -32,6 +33,9 @@
                                 <td><{$chats[ls].name1}></td>
                                 <td><{$chats[ls].name2}></td>
                                 <td><a title="<{$chats[ls].content}>"><{$chats[ls].show_content}><a/></td>
+                                <td>
+                                    <a href="#" class="delete label label-success" data-id="<{$chats[ls].cid}>">刪除</a>
+                                </td>
                               </tr>
                           <{/section}>
                         </tbody>
@@ -47,5 +51,27 @@
         </div>
     </div>
 </div>
+<script type="text/javascript">
+    $(document).ready(function($) {
+        var siteurl = $(".siteurl").val();
+        $(".delete").on("click",function(){
+            var me  = this;
+            var cid = $(this).attr("data-id");
+            $.ajax({
+                url: siteurl + "/chat/delete",
+                type: 'post',
+                dataType: 'json',
+                data: {cid: cid},
+            })
+            .done(function(data) {
+                if(data.errNo == 0){
+                    $(me).parents("tr").remove();
+                }else{
+                    alert("服务器异常，请稍后再试~~");
+                }
+            });  
+        });
+    });
+</script>
 <!-- 中间内容 and -->     
 <{include file="public/footer.html"}>

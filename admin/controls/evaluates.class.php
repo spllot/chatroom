@@ -6,9 +6,9 @@
                 return;
             }
             $eval = D('evaluate');
-            $page = new Page($eval->total(),PAGESIZE,"");
+            $page = new Page($eval->where(array("delete"=>0))->total(),PAGESIZE,"");
                        
-            $evalRes = $eval->limit($page->limit)->select();
+            $evalRes = $eval->where(array("delete"=>0))->limit($page->limit)->select();
 
             $user  = D('user');
             $userArr  = array();
@@ -41,5 +41,15 @@
             $this->assign('name',$_SESSION['name']);
             $this->assign('siteurl', SITEURL);
             $this->display();
-		}		
+		}
+        function delete(){
+            $ret = array(
+                "errNo"=>0
+            );
+            
+            $eval = D('evaluate');
+            $evalRes = $eval->where("eid=".$_POST['eid'])->update('delete=1');
+            
+            echo json_encode($ret);
+        }   	
 	}

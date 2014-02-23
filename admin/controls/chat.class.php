@@ -7,9 +7,9 @@
             }
 
             $chat = D('chat');
-            $page = new Page($chat->total(),PAGESIZE,"");
+            $page = new Page($chat->where(array("delete"=>0))->total(),PAGESIZE,"");
                        
-            $chatRes = $chat->limit($page->limit)->select();
+            $chatRes = $chat->where(array("delete"=>0))->limit($page->limit)->select();
 
             $user  = D('user');
             $userArr  = array();
@@ -46,5 +46,15 @@
             $this->assign('name',$_SESSION['name']);
             $this->assign('siteurl', SITEURL);
             $this->display();
-		}		
+		}
+        function delete(){
+            $ret = array(
+                "errNo"=>0
+            );
+            
+            $chat  = D('chat');
+            $chatRes = $chat->where("cid=".$_POST['cid'])->update('delete=1');
+            
+            echo json_encode($ret);
+        }	
 	}

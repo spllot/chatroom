@@ -1,17 +1,43 @@
 -- phpMyAdmin SQL Dump
--- version 3.3.9
+-- version 3.2.4
 -- http://www.phpmyadmin.net
 --
 -- 主机: localhost
--- 生成日期: 2014 年 02 月 22 日 15:25
--- 服务器版本: 5.5.8
--- PHP 版本: 5.3.5
+-- 生成日期: 2014 年 02 月 23 日 12:27
+-- 服务器版本: 5.1.41
+-- PHP 版本: 5.3.1
 
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
 
 --
 -- 数据库: `chatroom`
 --
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `ch_admin`
+--
+
+CREATE TABLE IF NOT EXISTS `ch_admin` (
+  `id` int(10) NOT NULL AUTO_INCREMENT COMMENT '自增ID',
+  `name` varchar(100) NOT NULL COMMENT '用户名',
+  `pass` varchar(100) NOT NULL COMMENT '密码',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+
+--
+-- 转存表中的数据 `ch_admin`
+--
+
+INSERT INTO `ch_admin` (`id`, `name`, `pass`) VALUES
+(1, 'spllot', 'e10adc3949ba59abbe56e057f20f883e');
 
 -- --------------------------------------------------------
 
@@ -23,12 +49,35 @@ CREATE TABLE IF NOT EXISTS `ch_area_level1` (
   `aid` int(10) NOT NULL AUTO_INCREMENT COMMENT '一级地区ID',
   `aname` varchar(100) NOT NULL COMMENT '一级地区名称',
   PRIMARY KEY (`aid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=23 ;
 
 --
 -- 转存表中的数据 `ch_area_level1`
 --
 
+INSERT INTO `ch_area_level1` (`aid`, `aname`) VALUES
+(1, '臺北巿'),
+(2, '臺中巿'),
+(3, '基隆巿'),
+(4, '臺南巿'),
+(5, '高雄巿'),
+(6, '新北市'),
+(7, '宜蘭縣'),
+(8, '桃園縣'),
+(9, '嘉義巿'),
+(10, '新竹縣'),
+(11, '苗栗縣'),
+(12, '南投縣'),
+(13, '彰化縣'),
+(14, '新竹巿'),
+(15, '雲林縣'),
+(16, '嘉義縣'),
+(17, '屏東縣'),
+(18, '花蓮縣'),
+(19, '臺東縣'),
+(20, '金門縣'),
+(21, '澎湖縣'),
+(22, '連江縣');
 
 -- --------------------------------------------------------
 
@@ -41,12 +90,378 @@ CREATE TABLE IF NOT EXISTS `ch_area_level2` (
   `aname` varchar(100) NOT NULL COMMENT '二级地区名称',
   `level1_aid` int(10) NOT NULL COMMENT '一级地区ID',
   PRIMARY KEY (`aid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=366 ;
 
 --
 -- 转存表中的数据 `ch_area_level2`
 --
 
+INSERT INTO `ch_area_level2` (`aid`, `aname`, `level1_aid`) VALUES
+(1, '松山區', 1),
+(2, '大安區', 1),
+(3, '中正區', 1),
+(4, '萬華區', 1),
+(5, '大同區', 1),
+(6, '中山區', 1),
+(7, '文山區', 1),
+(8, '南港區', 1),
+(9, '內湖區', 1),
+(10, '士林區', 1),
+(11, '北投區', 1),
+(12, '信義區', 1),
+(13, '中區', 2),
+(14, '東區', 2),
+(15, '西區', 2),
+(16, '南區', 2),
+(17, '北區', 2),
+(18, '西屯區', 2),
+(19, '南屯區', 2),
+(20, '北屯區', 2),
+(21, '豐原區', 2),
+(22, '東勢區', 2),
+(23, '大甲區', 2),
+(24, '清水區', 2),
+(25, '沙鹿區', 2),
+(26, '梧棲區', 2),
+(27, '神岡區', 2),
+(28, '后里區', 2),
+(29, '大雅區', 2),
+(30, '潭子區', 2),
+(31, '新社區', 2),
+(32, '石岡區', 2),
+(33, '外埔區', 2),
+(34, '大安區', 2),
+(35, '烏日區', 2),
+(36, '大肚區', 2),
+(37, '龍井區', 2),
+(38, '霧峰區', 2),
+(39, '太平區', 2),
+(40, '大里區', 2),
+(41, '和平區', 2),
+(42, '中正區', 3),
+(43, '七堵區', 3),
+(44, '暖暖區', 3),
+(45, '仁愛區', 3),
+(46, '中山區', 3),
+(47, '安樂區', 3),
+(48, '信義區', 3),
+(49, '東區', 4),
+(50, '南區', 4),
+(51, '北區', 4),
+(52, '安南區', 4),
+(53, '安平區', 4),
+(54, '中西區', 4),
+(55, '新營區', 4),
+(56, '鹽水區', 4),
+(57, '白河區', 4),
+(58, '柳營區', 4),
+(59, '後壁區', 4),
+(60, '東山區', 4),
+(61, '麻豆區', 4),
+(62, '下營區', 4),
+(63, '六甲區', 4),
+(64, '官田區', 4),
+(65, '大內區', 4),
+(66, '佳里區', 4),
+(67, '西港區', 4),
+(68, '七股區', 4),
+(69, '將軍區', 4),
+(70, '北門區', 4),
+(71, '學甲區', 4),
+(72, '新化區', 4),
+(73, '善化區', 4),
+(74, '新巿區', 4),
+(75, '安定區', 4),
+(76, '山上區', 4),
+(77, '玉井區', 4),
+(78, '楠西區', 4),
+(79, '南化區', 4),
+(80, '左鎮區', 4),
+(81, '仁德區', 4),
+(82, '歸仁區', 4),
+(83, '關廟區', 4),
+(84, '龍崎區', 4),
+(85, '永康區', 4),
+(86, '鹽埕區', 5),
+(87, '鼓山區', 5),
+(88, '左營區', 5),
+(89, '楠梓區', 5),
+(90, '三民區', 5),
+(91, '新興區', 5),
+(92, '前金區', 5),
+(93, '苓雅區', 5),
+(94, '前鎮區', 5),
+(95, '旗津區', 5),
+(96, '小港區', 5),
+(97, '鳳山區', 5),
+(98, '鳥松區', 5),
+(99, '仁武區', 5),
+(100, '大社區', 5),
+(101, '大樹區', 5),
+(102, '大寮區', 5),
+(103, '林園區', 5),
+(104, '岡山區', 5),
+(105, '茄萣區', 5),
+(106, '永安區', 5),
+(107, '橋頭區', 5),
+(108, '梓官區', 5),
+(109, '田寮區', 5),
+(110, '阿蓮區', 5),
+(111, '路竹區', 5),
+(112, '燕巢區', 5),
+(113, '彌陀區', 5),
+(114, '湖內區', 5),
+(115, '旗山區', 5),
+(116, '六龜區', 5),
+(117, '內門區', 5),
+(118, '美濃區', 5),
+(119, '杉林區', 5),
+(120, '甲仙區', 5),
+(121, '茂林區', 5),
+(122, '桃源區', 5),
+(123, '那瑪夏區', 5),
+(124, '新莊區', 6),
+(125, '林口區', 6),
+(126, '五股區', 6),
+(127, '蘆洲區', 6),
+(128, '三重區', 6),
+(129, '泰山區', 6),
+(130, '新店區', 6),
+(131, '石碇區', 6),
+(132, '深坑區', 6),
+(133, '坪林區', 6),
+(134, '烏來區', 6),
+(135, '板橋區', 6),
+(136, '三峽區', 6),
+(137, '鶯歌區', 6),
+(138, '樹林區', 6),
+(139, '中和區', 6),
+(140, '土城區', 6),
+(141, '瑞芳區', 6),
+(142, '平溪區', 6),
+(143, '雙溪區', 6),
+(144, '貢寮區', 6),
+(145, '金山區', 6),
+(146, '萬里區', 6),
+(147, '淡水區', 6),
+(148, '汐止區', 6),
+(149, '三芝區', 6),
+(150, '石門區', 6),
+(151, '八里區', 6),
+(152, '永和區', 6),
+(153, '宜蘭巿', 7),
+(154, '頭城鎮', 7),
+(155, '礁溪鄉', 7),
+(156, '壯圍鄉', 7),
+(157, '員山鄉', 7),
+(158, '羅東鎮', 7),
+(159, '五結鄉', 7),
+(160, '冬山鄉', 7),
+(161, '蘇澳鎮', 7),
+(162, '三星鄉', 7),
+(163, '大同鄉', 7),
+(164, '南澳鄉', 7),
+(165, '桃園巿', 8),
+(166, '大溪鎮', 8),
+(167, '中壢巿', 8),
+(168, '楊梅市', 8),
+(169, '蘆竹鄉', 8),
+(170, '大園鄉', 8),
+(171, '龜山鄉', 8),
+(172, '八德市', 8),
+(173, '龍潭鄉', 8),
+(174, '平鎮市', 8),
+(175, '新屋鄉', 8),
+(176, '觀音鄉', 8),
+(177, '復興鄉', 8),
+(178, '嘉義巿', 9),
+(179, '竹東鎮', 10),
+(180, '關西鎮', 10),
+(181, '新埔鎮', 10),
+(182, '竹北市', 10),
+(183, '湖口鄉', 10),
+(184, '橫山鄉', 10),
+(185, '新豐鄉', 10),
+(186, '芎林鄉', 10),
+(187, '寶山鄉', 10),
+(188, '北埔鄉', 10),
+(189, '峨眉鄉', 10),
+(190, '尖石鄉', 10),
+(191, '五峰鄉', 10),
+(192, '苗栗巿', 11),
+(193, '苑裡鎮', 11),
+(194, '通霄鎮', 11),
+(195, '公館鄉', 11),
+(196, '銅鑼鄉', 11),
+(197, '三義鄉', 11),
+(198, '西湖鄉', 11),
+(199, '頭屋鄉', 11),
+(200, '竹南鎮', 11),
+(201, '頭份鎮', 11),
+(202, '造橋鄉', 11),
+(203, '後龍鎮', 11),
+(204, '三灣鄉', 11),
+(205, '南庄鄉', 11),
+(206, '大湖鄉', 11),
+(207, '卓蘭鎮', 11),
+(208, '獅潭鄉', 11),
+(209, '泰安鄉', 11),
+(210, '南投巿', 12),
+(211, '埔里鎮', 12),
+(212, '草屯鎮', 12),
+(213, '竹山鎮', 12),
+(214, '集集鎮', 12),
+(215, '名間鄉', 12),
+(216, '鹿谷鄉', 12),
+(217, '中寮鄉', 12),
+(218, '魚池鄉', 12),
+(219, '國姓鄉', 12),
+(220, '水里鄉', 12),
+(221, '信義鄉', 12),
+(222, '仁愛鄉', 12),
+(223, '彰化巿', 13),
+(224, '鹿港鎮', 13),
+(225, '和美鎮', 13),
+(226, '北斗鎮', 13),
+(227, '員林鎮', 13),
+(228, '溪湖鎮', 13),
+(229, '田中鎮', 13),
+(230, '二林鎮', 13),
+(231, '線西鄉', 13),
+(232, '伸港鄉', 13),
+(233, '福興鄉', 13),
+(234, '秀水鄉', 13),
+(235, '花壇鄉', 13),
+(236, '芬園鄉', 13),
+(237, '大村鄉', 13),
+(238, '埔鹽鄉', 13),
+(239, '埔心鄉', 13),
+(240, '永靖鄉', 13),
+(241, '社頭鄉', 13),
+(242, '二水鄉', 13),
+(243, '田尾鄉', 13),
+(244, '埤頭鄉', 13),
+(245, '芳苑鄉', 13),
+(246, '大城鄉', 13),
+(247, '竹塘鄉', 13),
+(248, '溪州鄉', 13),
+(249, '新竹巿', 14),
+(250, '斗六市', 15),
+(251, '斗南鎮', 15),
+(252, '虎尾鎮', 15),
+(253, '西螺鎮', 15),
+(254, '土庫鎮', 15),
+(255, '北港鎮', 15),
+(256, '古坑鄉', 15),
+(257, '大埤鄉', 15),
+(258, '莿桐鄉', 15),
+(259, '林內鄉', 15),
+(260, '二崙鄉', 15),
+(261, '崙背鄉', 15),
+(262, '麥寮鄉', 15),
+(263, '東勢鄉', 15),
+(264, '褒忠鄉', 15),
+(265, '台西鄉', 15),
+(266, '元長鄉', 15),
+(267, '四湖鄉', 15),
+(268, '口湖鄉', 15),
+(269, '水林鄉', 15),
+(270, '朴子市', 16),
+(271, '布袋鎮', 16),
+(272, '大林鎮', 16),
+(273, '民雄鄉', 16),
+(274, '溪口鄉', 16),
+(275, '新港鄉', 16),
+(276, '六腳鄉', 16),
+(277, '東石鄉', 16),
+(278, '義竹鄉', 16),
+(279, '鹿草鄉', 16),
+(280, '太保巿', 16),
+(281, '水上鄉', 16),
+(282, '中埔鄉', 16),
+(283, '竹崎鄉', 16),
+(284, '梅山鄉', 16),
+(285, '番路鄉', 16),
+(286, '大埔鄉', 16),
+(287, '阿里山鄉', 16),
+(288, '屏東巿', 17),
+(289, '潮州鎮', 17),
+(290, '東港鎮', 17),
+(291, '恆春鎮', 17),
+(292, '萬丹鄉', 17),
+(293, '長治鄉', 17),
+(294, '麟洛鄉', 17),
+(295, '九如鄉', 17),
+(296, '里港鄉', 17),
+(297, '鹽埔鄉', 17),
+(298, '高樹鄉', 17),
+(299, '萬巒鄉', 17),
+(300, '內埔鄉', 17),
+(301, '竹田鄉', 17),
+(302, '新埤鄉', 17),
+(303, '枋寮鄉', 17),
+(304, '新園鄉', 17),
+(305, '崁頂鄉', 17),
+(306, '林邊鄉', 17),
+(307, '南州鄉', 17),
+(308, '佳冬鄉', 17),
+(309, '琉球鄉', 17),
+(310, '車城鄉', 17),
+(311, '滿州鄉', 17),
+(312, '枋山鄉', 17),
+(313, '三地門鄉', 17),
+(314, '霧臺鄉', 17),
+(315, '瑪家鄉', 17),
+(316, '泰武鄉', 17),
+(317, '來義鄉', 17),
+(318, '春日鄉', 17),
+(319, '獅子鄉', 17),
+(320, '牡丹鄉', 17),
+(321, '花蓮巿', 18),
+(322, '光復鄉', 18),
+(323, '玉里鎮', 18),
+(324, '新城鄉', 18),
+(325, '吉安鄉', 18),
+(326, '壽豐鄉', 18),
+(327, '鳳林鎮', 18),
+(328, '豐濱鄉', 18),
+(329, '瑞穗鄉', 18),
+(330, '富里鄉', 18),
+(331, '秀林鄉', 18),
+(332, '萬榮鄉', 18),
+(333, '卓溪鄉', 18),
+(334, '台東巿', 19),
+(335, '成功鎮', 19),
+(336, '關山鎮', 19),
+(337, '卑南鄉', 19),
+(338, '大武鄉', 19),
+(339, '太麻里鄉', 19),
+(340, '東河鄉', 19),
+(341, '長濱鄉', 19),
+(342, '鹿野鄉', 19),
+(343, '池上鄉', 19),
+(344, '綠島鄉', 19),
+(345, '延平鄉', 19),
+(346, '海端鄉', 19),
+(347, '達仁鄉', 19),
+(348, '金峰鄉', 19),
+(349, '蘭嶼鄉', 19),
+(350, '金湖鎮', 20),
+(351, '金沙鎮', 20),
+(352, '金城鎮', 20),
+(353, '金寧鄉', 20),
+(354, '烈嶼鄉', 20),
+(355, '烏坵鄉', 20),
+(356, '馬公巿', 21),
+(357, '湖西鄉', 21),
+(358, '白沙鄉', 21),
+(359, '西嶼鄉', 21),
+(360, '望安鄉', 21),
+(361, '七美鄉', 21),
+(362, '南竿鄉', 22),
+(363, '北竿鄉', 22),
+(364, '莒光鄉', 22),
+(365, '東引鄉', 22);
 
 -- --------------------------------------------------------
 
@@ -55,19 +470,52 @@ CREATE TABLE IF NOT EXISTS `ch_area_level2` (
 --
 
 CREATE TABLE IF NOT EXISTS `ch_charge` (
-  `cid` int(10) NOT NULL COMMENT '自增ID',
+  `cid` int(10) NOT NULL AUTO_INCREMENT COMMENT '自增ID',
   `charge_time` varchar(100) NOT NULL COMMENT '充值或扣点时间',
   `uid` int(10) NOT NULL COMMENT '被充值用户的Id',
   `add_point` float NOT NULL COMMENT '充值点数',
   `minus_point` float NOT NULL COMMENT '扣点点数',
-  `remain_point` float NOT NULL COMMENT '剩余点数',
-  `operator` int(10) NOT NULL COMMENT '操作者ID'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `operator` int(10) NOT NULL COMMENT '操作者ID',
+  `delete` int(10) NOT NULL DEFAULT '0' COMMENT '标记删除',
+  PRIMARY KEY (`cid`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=33 ;
 
 --
 -- 转存表中的数据 `ch_charge`
 --
 
+INSERT INTO `ch_charge` (`cid`, `charge_time`, `uid`, `add_point`, `minus_point`, `operator`, `delete`) VALUES
+(2, '1393144222', 5, 100, 0, 1, 0),
+(3, '1393144223', 6, 100, 0, 1, 0),
+(4, '1393144224', 7, 100, 0, 1, 0),
+(5, '1393144225', 8, 100, 0, 1, 0),
+(6, '1393144226', 9, 100, 0, 1, 0),
+(7, '1393144227', 10, 100, 0, 1, 0),
+(8, '1393144228', 11, 100, 0, 1, 0),
+(9, '1393144229', 12, 100, 0, 1, 0),
+(10, '1393144230', 13, 100, 0, 1, 0),
+(11, '1393144231', 14, 100, 0, 1, 0),
+(12, '1393144232', 15, 100, 0, 1, 0),
+(13, '1393144233', 16, 100, 0, 1, 0),
+(14, '1393144234', 17, 100, 0, 1, 0),
+(15, '1393144235', 18, 100, 0, 1, 0),
+(16, '1393144236', 19, 100, 0, 1, 0),
+(17, '1393144237', 20, 100, 0, 1, 0),
+(18, '1393144238', 21, 100, 0, 1, 0),
+(19, '1393144239', 22, 100, 0, 1, 0),
+(20, '1393144240', 23, 100, 0, 1, 0),
+(21, '1393144241', 24, 100, 0, 1, 0),
+(22, '1393144242', 25, 100, 0, 1, 0),
+(23, '1393144243', 26, 100, 0, 1, 0),
+(24, '1393144244', 27, 100, 0, 1, 0),
+(25, '1393144245', 28, 100, 0, 1, 0),
+(26, '1393144246', 29, 100, 0, 1, 0),
+(27, '1393144247', 30, 100, 0, 1, 0),
+(28, '1393144248', 31, 100, 0, 1, 0),
+(29, '1393144249', 32, 100, 0, 1, 0),
+(30, '1393144250', 33, 100, 0, 1, 0),
+(31, '1393144251', 34, 100, 0, 1, 0),
+(32, '1393144252', 35, 100, 0, 1, 0);
 
 -- --------------------------------------------------------
 
@@ -81,13 +529,33 @@ CREATE TABLE IF NOT EXISTS `ch_chat` (
   `uid2` int(10) NOT NULL COMMENT '被聊天会员ID',
   `content` varchar(800) NOT NULL COMMENT '聊天内容',
   `create_time` varchar(100) NOT NULL COMMENT '聊天时间',
+  `delete` int(10) NOT NULL DEFAULT '0' COMMENT '标记删除',
   PRIMARY KEY (`cid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=22 ;
 
 --
 -- 转存表中的数据 `ch_chat`
 --
 
+INSERT INTO `ch_chat` (`cid`, `uid1`, `uid2`, `content`, `create_time`, `delete`) VALUES
+(1, 4, 5, '2014-02-23 09:02:02的聊天內容很好，相當好，不錯', '1393147322', 0),
+(2, 5, 6, '2014-02-23 09:02:03的聊天內容很好，相當好，不錯', '1393147323', 0),
+(3, 6, 7, '2014-02-23 09:02:04的聊天內容很好，相當好，不錯', '1393147324', 0),
+(4, 7, 8, '2014-02-23 09:02:05的聊天內容很好，相當好，不錯', '1393147325', 0),
+(5, 8, 9, '2014-02-23 09:02:06的聊天內容很好，相當好，不錯', '1393147326', 0),
+(6, 9, 10, '2014-02-23 09:02:07的聊天內容很好，相當好，不錯', '1393147327', 0),
+(7, 10, 11, '2014-02-23 09:02:08的聊天內容很好，相當好，不錯', '1393147328', 0),
+(8, 11, 12, '2014-02-23 09:02:09的聊天內容很好，相當好，不錯', '1393147329', 0),
+(9, 12, 13, '2014-02-23 09:02:10的聊天內容很好，相當好，不錯', '1393147330', 0),
+(10, 13, 14, '2014-02-23 09:02:11的聊天內容很好，相當好，不錯', '1393147331', 0),
+(13, 16, 17, '2014-02-23 09:02:14的聊天內容很好，相當好，不錯', '1393147334', 0),
+(14, 17, 18, '2014-02-23 09:02:15的聊天內容很好，相當好，不錯', '1393147335', 0),
+(15, 18, 19, '2014-02-23 09:02:16的聊天內容很好，相當好，不錯', '1393147336', 0),
+(16, 19, 20, '2014-02-23 09:02:17的聊天內容很好，相當好，不錯', '1393147337', 0),
+(17, 20, 21, '2014-02-23 09:02:18的聊天內容很好，相當好，不錯', '1393147338', 0),
+(18, 21, 22, '2014-02-23 09:02:19的聊天內容很好，相當好，不錯', '1393147339', 0),
+(19, 22, 23, '2014-02-23 09:02:20的聊天內容很好，相當好，不錯', '1393147340', 0),
+(21, 24, 25, '2014-02-23 09:02:22的聊天內容很好，相當好，不錯', '1393147342', 0);
 
 -- --------------------------------------------------------
 
@@ -102,13 +570,45 @@ CREATE TABLE IF NOT EXISTS `ch_evaluate` (
   `content` varchar(800) NOT NULL COMMENT '评论内容',
   `create_time` varchar(100) NOT NULL COMMENT '评论时间',
   `rank` int(10) NOT NULL COMMENT '评论等级',
+  `delete` int(10) NOT NULL DEFAULT '0' COMMENT '标记删除',
   PRIMARY KEY (`eid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=32 ;
 
 --
 -- 转存表中的数据 `ch_evaluate`
 --
 
+INSERT INTO `ch_evaluate` (`eid`, `uid1`, `uid2`, `content`, `create_time`, `rank`, `delete`) VALUES
+(2, 5, 6, '很好，相當好，不錯', '1393145666', 3, 0),
+(3, 6, 7, '很好，相當好，不錯', '1393145667', 1, 0),
+(4, 7, 8, '很好，相當好，不錯', '1393145668', 2, 0),
+(5, 8, 9, '很好，相當好，不錯', '1393145669', 3, 0),
+(6, 9, 10, '很好，相當好，不錯', '1393145670', 1, 0),
+(7, 10, 11, '很好，相當好，不錯', '1393145671', 2, 0),
+(8, 11, 12, '很好，相當好，不錯', '1393145672', 3, 0),
+(9, 12, 13, '很好，相當好，不錯', '1393145673', 1, 0),
+(10, 13, 14, '很好，相當好，不錯', '1393145674', 2, 0),
+(11, 14, 15, '很好，相當好，不錯', '1393145675', 3, 0),
+(12, 15, 16, '很好，相當好，不錯', '1393145676', 1, 0),
+(13, 16, 17, '很好，相當好，不錯', '1393145677', 2, 0),
+(14, 17, 18, '很好，相當好，不錯', '1393145678', 3, 0),
+(15, 18, 19, '很好，相當好，不錯', '1393145679', 1, 0),
+(16, 19, 20, '很好，相當好，不錯', '1393145680', 2, 0),
+(17, 20, 21, '很好，相當好，不錯', '1393145681', 3, 0),
+(18, 21, 22, '很好，相當好，不錯', '1393145682', 1, 0),
+(19, 22, 23, '很好，相當好，不錯', '1393145683', 2, 0),
+(20, 23, 24, '很好，相當好，不錯', '1393145684', 3, 0),
+(21, 24, 25, '很好，相當好，不錯', '1393145685', 1, 0),
+(22, 25, 26, '很好，相當好，不錯', '1393145686', 2, 0),
+(23, 26, 27, '很好，相當好，不錯', '1393145687', 3, 0),
+(24, 27, 28, '很好，相當好，不錯', '1393145688', 1, 0),
+(25, 28, 29, '很好，相當好，不錯', '1393145689', 2, 0),
+(26, 29, 30, '很好，相當好，不錯', '1393145690', 3, 0),
+(27, 30, 31, '很好，相當好，不錯', '1393145691', 1, 0),
+(28, 31, 32, '很好，相當好，不錯', '1393145692', 2, 0),
+(29, 32, 33, '很好，相當好，不錯', '1393145693', 3, 0),
+(30, 33, 34, '很好，相當好，不錯', '1393145694', 1, 0),
+(31, 34, 35, '很好，相當好，不錯', '1393145695', 2, 0);
 
 -- --------------------------------------------------------
 
@@ -142,6 +642,9 @@ CREATE TABLE IF NOT EXISTS `ch_user` (
   `nick` varchar(100) NOT NULL COMMENT '昵称',
   `email` varchar(100) NOT NULL COMMENT '邮箱',
   `imgurl` varchar(500) NOT NULL COMMENT '头像地址',
+  `age` int(10) NOT NULL COMMENT '年纪',
+  `height` int(10) NOT NULL COMMENT '身高',
+  `status` int(10) NOT NULL COMMENT '状态（0可用 1停用）',
   `area_level1_id` int(10) NOT NULL COMMENT '一级地区ID',
   `area_level2_id` int(10) NOT NULL COMMENT '二级地区ID',
   `type` int(10) NOT NULL COMMENT '会员类型（一般会员、聊天会员）',
@@ -153,399 +656,48 @@ CREATE TABLE IF NOT EXISTS `ch_user` (
   `last_login_time` varchar(100) NOT NULL COMMENT '上次登录时间',
   `chat_time_limit` int(10) NOT NULL COMMENT '聊天次数限定',
   `chat_one_time_fee` float NOT NULL COMMENT '每一次聊天费用',
+  `delete` int(10) NOT NULL DEFAULT '0' COMMENT '标记是否删除（1为删除 0为未删除）',
   PRIMARY KEY (`uid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=36 ;
 
 --
 -- 转存表中的数据 `ch_user`
 --
 
-insert into ch_user values(1,'張三','e10adc3949ba59abbe56e057f20f883e','spllot','spllot@163.com','',1,1,1,1,'個人介紹信息','個人簡介信息',0,'','',10,0);
+INSERT INTO `ch_user` (`uid`, `name`, `pass`, `nick`, `email`, `imgurl`, `age`, `height`, `status`, `area_level1_id`, `area_level2_id`, `type`, `rank`, `info`, `introduction`, `point`, `reg_time`, `last_login_time`, `chat_time_limit`, `chat_one_time_fee`, `delete`) VALUES
+(4, '張三', 'e10adc3949ba59abbe56e057f20f883e', 'splot', 'splot@163.com', 'http://133.mi688.com/img/avatar-2.png', 16, 170, 0, 1, 1, 1, 1, '個人介紹信息', '個人簡介信息', 100, '1393155600', '', 10, 0, 0),
+(5, '李四', 'e10adc3949ba59abbe56e057f20f883e', 'adfsd', 'adfsd@163.com', 'http://133.mi688.com/img/avatar-2.png', 16, 170, 0, 1, 1, 1, 1, '個人介紹信息', '個人簡介信息', 100, '1393155600', '', 10, 0, 0),
+(6, '王五', 'e10adc3949ba59abbe56e057f20f883e', '235325', '235325@163.com', 'http://133.mi688.com/img/avatar-2.png', 16, 170, 0, 1, 1, 1, 1, '個人介紹信息', '個人簡介信息', 100, '1393155600', '', 10, 0, 0),
+(7, '小小', 'e10adc3949ba59abbe56e057f20f883e', '3dsfs', '3dsfs@163.com', 'http://133.mi688.com/img/avatar-2.png', 16, 170, 0, 1, 1, 1, 1, '個人介紹信息', '個人簡介信息', 100, '1393155600', '', 10, 0, 0),
+(8, '芳明', 'e10adc3949ba59abbe56e057f20f883e', 'df3rwe', 'df3rwe@163.com', 'http://133.mi688.com/img/avatar-2.png', 16, 170, 0, 1, 1, 1, 1, '個人介紹信息', '個人簡介信息', 100, '1393155600', '', 10, 0, 0),
+(9, '大喵', 'e10adc3949ba59abbe56e057f20f883e', 'vbvb', 'vbvb@163.com', 'http://133.mi688.com/img/avatar-2.png', 16, 170, 0, 1, 1, 1, 1, '個人介紹信息', '個人簡介信息', 100, '1393155600', '', 10, 0, 0),
+(10, '在天上', 'e10adc3949ba59abbe56e057f20f883e', 'gfre', 'gfre@163.com', 'http://133.mi688.com/img/avatar-2.png', 16, 170, 0, 1, 1, 1, 1, '個人介紹信息', '個人簡介信息', 100, '1393155600', '', 10, 0, 0),
+(11, 'DDs', 'e10adc3949ba59abbe56e057f20f883e', 'ertre', 'ertre@163.com', 'http://133.mi688.com/img/avatar-2.png', 16, 170, 0, 1, 1, 1, 1, '個人介紹信息', '個人簡介信息', 100, '1393155600', '', 10, 0, 0),
+(12, '森大', 'e10adc3949ba59abbe56e057f20f883e', '43534df', '43534df@163.com', 'http://133.mi688.com/img/avatar-2.png', 16, 170, 0, 1, 1, 1, 1, '個人介紹信息', '個人簡介信息', 100, '1393155600', '', 10, 0, 0),
+(13, '李世民', 'e10adc3949ba59abbe56e057f20f883e', 'gfhgfa', 'gfhgfa@163.com', 'http://133.mi688.com/img/avatar-2.png', 16, 170, 0, 1, 1, 1, 1, '個人介紹信息', '個人簡介信息', 100, '1393155600', '', 10, 0, 0),
+(14, '程咬金', 'e10adc3949ba59abbe56e057f20f883e', 'dfgnn', 'dfgnn@163.com', 'http://133.mi688.com/img/avatar-2.png', 16, 170, 0, 1, 1, 1, 1, '個人介紹信息', '個人簡介信息', 100, '1393155600', '', 10, 0, 0),
+(15, '花木壯大', 'e10adc3949ba59abbe56e057f20f883e', 'qaaq', 'qaaq@163.com', 'http://133.mi688.com/img/avatar-2.png', 16, 170, 0, 1, 1, 1, 1, '個人介紹信息', '個人簡介信息', 100, '1393155600', '', 10, 0, 0),
+(16, '雷達', 'e10adc3949ba59abbe56e057f20f883e', 'wsws', 'wsws@163.com', 'http://133.mi688.com/img/avatar-2.png', 16, 170, 0, 1, 1, 1, 1, '個人介紹信息', '個人簡介信息', 100, '1393155600', '', 10, 0, 0),
+(17, '天殺', 'e10adc3949ba59abbe56e057f20f883e', 'eded', 'eded@163.com', 'http://133.mi688.com/img/avatar-2.png', 16, 170, 0, 1, 1, 1, 1, '個人介紹信息', '個人簡介信息', 100, '1393155600', '', 10, 0, 0),
+(18, '無名', 'e10adc3949ba59abbe56e057f20f883e', 'edes', 'edes@163.com', 'http://133.mi688.com/img/avatar-2.png', 16, 170, 0, 1, 1, 1, 1, '個人介紹信息', '個人簡介信息', 100, '1393155600', '', 10, 0, 0),
+(19, '大牛', 'e10adc3949ba59abbe56e057f20f883e', 'asdqwe', 'asdqwe@163.com', 'http://133.mi688.com/img/avatar-2.png', 16, 170, 0, 1, 1, 1, 1, '個人介紹信息', '個人簡介信息', 100, '1393155600', '', 10, 0, 0),
+(20, '紀無', 'e10adc3949ba59abbe56e057f20f883e', 'zzzzz', 'zzzzz@163.com', 'http://133.mi688.com/img/avatar-2.png', 16, 170, 0, 1, 1, 1, 1, '個人介紹信息', '個人簡介信息', 100, '1393155600', '', 10, 0, 0),
+(21, '不離', 'e10adc3949ba59abbe56e057f20f883e', 'xxxx', 'xxxx@163.com', 'http://133.mi688.com/img/avatar-2.png', 16, 170, 0, 1, 1, 1, 1, '個人介紹信息', '個人簡介信息', 100, '1393155600', '', 10, 0, 0),
+(22, '不戲', 'e10adc3949ba59abbe56e057f20f883e', 'cccc', 'cccc@163.com', 'http://133.mi688.com/img/avatar-2.png', 16, 170, 0, 1, 1, 1, 1, '個人介紹信息', '個人簡介信息', 100, '1393155600', '', 10, 0, 0),
+(23, 'spdie', 'e10adc3949ba59abbe56e057f20f883e', 'vvvvv', 'vvvvv@163.com', 'http://133.mi688.com/img/avatar-2.png', 16, 170, 0, 1, 1, 1, 1, '個人介紹信息', '個人簡介信息', 100, '1393155600', '', 10, 0, 0),
+(24, 'timge', 'e10adc3949ba59abbe56e057f20f883e', 'dddd', 'dddd@163.com', 'http://133.mi688.com/img/avatar-2.png', 16, 170, 0, 1, 1, 1, 1, '個人介紹信息', '個人簡介信息', 100, '1393155600', '', 10, 0, 0),
+(25, 'eykd', 'e10adc3949ba59abbe56e057f20f883e', 'gggg', 'gggg@163.com', 'http://133.mi688.com/img/avatar-2.png', 16, 170, 0, 1, 1, 1, 1, '個人介紹信息', '個人簡介信息', 100, '1393155600', '', 10, 0, 0),
+(26, 'sdgdsgsd', 'e10adc3949ba59abbe56e057f20f883e', 'eeeee', 'eeeee@163.com', 'http://133.mi688.com/img/avatar-2.png', 16, 170, 0, 1, 1, 1, 1, '個人介紹信息', '個人簡介信息', 100, '1393155600', '', 10, 0, 0),
+(27, 'timeid', 'e10adc3949ba59abbe56e057f20f883e', 'tttt', 'tttt@163.com', 'http://133.mi688.com/img/avatar-2.png', 16, 170, 0, 1, 1, 1, 1, '個人介紹信息', '個人簡介信息', 100, '1393155600', '', 10, 0, 0),
+(28, 'mnaue', 'e10adc3949ba59abbe56e057f20f883e', 'gggggg', 'gggggg@163.com', 'http://133.mi688.com/img/avatar-2.png', 16, 170, 0, 1, 1, 1, 1, '個人介紹信息', '個人簡介信息', 100, '1393155600', '', 10, 0, 0),
+(29, '要不來', 'e10adc3949ba59abbe56e057f20f883e', 'fffff', 'fffff@163.com', 'http://133.mi688.com/img/avatar-2.png', 16, 170, 0, 1, 1, 1, 1, '個人介紹信息', '個人簡介信息', 100, '1393155600', '', 10, 0, 0),
+(30, '再來不', 'e10adc3949ba59abbe56e057f20f883e', 'hhhh', 'hhhh@163.com', 'http://133.mi688.com/img/avatar-2.png', 16, 170, 0, 1, 1, 1, 1, '個人介紹信息', '個人簡介信息', 100, '1393155600', '', 10, 0, 0),
+(31, '布且', 'e10adc3949ba59abbe56e057f20f883e', 'uuuuu', 'uuuuu@163.com', 'http://133.mi688.com/img/avatar-2.png', 16, 170, 0, 1, 1, 1, 1, '個人介紹信息', '個人簡介信息', 100, '1393155600', '', 10, 0, 0),
+(32, '死神', 'e10adc3949ba59abbe56e057f20f883e', 'iiiii', 'iiiii@163.com', 'http://133.mi688.com/img/avatar-2.png', 16, 170, 0, 1, 1, 1, 1, '個人介紹信息', '個人簡介信息', 100, '1393155600', '', 10, 0, 0),
+(33, '九悔', 'e10adc3949ba59abbe56e057f20f883e', 'ooooo', 'ooooo@163.com', 'http://133.mi688.com/img/avatar-2.png', 16, 170, 0, 1, 1, 1, 1, '個人介紹信息', '個人簡介信息', 100, '1393155600', '', 10, 0, 0),
+(34, '九尾', 'e10adc3949ba59abbe56e057f20f883e', 'llklklk', 'llklklk@163.com', 'http://133.mi688.com/img/avatar-2.png', 16, 170, 0, 1, 1, 1, 1, '個人介紹信息', '個人簡介信息', 100, '1393155600', '', 10, 0, 0),
+(35, '佐助', 'e10adc3949ba59abbe56e057f20f883e', 'yuiuii', 'yuiuii@163.com', 'http://133.mi688.com/img/avatar-2.png', 16, 170, 0, 1, 1, 1, 1, '個人介紹信息', '個人簡介信息', 100, '1393155600', '', 10, 0, 0);
 
-insert into ch_area_level1 values(1,'臺北巿');
-insert into ch_area_level2 values(null,'松山區',1);
-insert into ch_area_level2 values(null,'大安區',1);
-insert into ch_area_level2 values(null,'中正區',1);
-insert into ch_area_level2 values(null,'萬華區',1);
-insert into ch_area_level2 values(null,'大同區',1);
-insert into ch_area_level2 values(null,'中山區',1);
-insert into ch_area_level2 values(null,'文山區',1);
-insert into ch_area_level2 values(null,'南港區',1);
-insert into ch_area_level2 values(null,'內湖區',1);
-insert into ch_area_level2 values(null,'士林區',1);
-insert into ch_area_level2 values(null,'北投區',1);
-insert into ch_area_level2 values(null,'信義區',1);
-insert into ch_area_level1 values(2,'臺中巿');
-insert into ch_area_level2 values(null,'中區',2);
-insert into ch_area_level2 values(null,'東區',2);
-insert into ch_area_level2 values(null,'西區',2);
-insert into ch_area_level2 values(null,'南區',2);
-insert into ch_area_level2 values(null,'北區',2);
-insert into ch_area_level2 values(null,'西屯區',2);
-insert into ch_area_level2 values(null,'南屯區',2);
-insert into ch_area_level2 values(null,'北屯區',2);
-insert into ch_area_level2 values(null,'豐原區',2);
-insert into ch_area_level2 values(null,'東勢區',2);
-insert into ch_area_level2 values(null,'大甲區',2);
-insert into ch_area_level2 values(null,'清水區',2);
-insert into ch_area_level2 values(null,'沙鹿區',2);
-insert into ch_area_level2 values(null,'梧棲區',2);
-insert into ch_area_level2 values(null,'神岡區',2);
-insert into ch_area_level2 values(null,'后里區',2);
-insert into ch_area_level2 values(null,'大雅區',2);
-insert into ch_area_level2 values(null,'潭子區',2);
-insert into ch_area_level2 values(null,'新社區',2);
-insert into ch_area_level2 values(null,'石岡區',2);
-insert into ch_area_level2 values(null,'外埔區',2);
-insert into ch_area_level2 values(null,'大安區',2);
-insert into ch_area_level2 values(null,'烏日區',2);
-insert into ch_area_level2 values(null,'大肚區',2);
-insert into ch_area_level2 values(null,'龍井區',2);
-insert into ch_area_level2 values(null,'霧峰區',2);
-insert into ch_area_level2 values(null,'太平區',2);
-insert into ch_area_level2 values(null,'大里區',2);
-insert into ch_area_level2 values(null,'和平區',2);
-insert into ch_area_level1 values(3,'基隆巿');
-insert into ch_area_level2 values(null,'中正區',3);
-insert into ch_area_level2 values(null,'七堵區',3);
-insert into ch_area_level2 values(null,'暖暖區',3);
-insert into ch_area_level2 values(null,'仁愛區',3);
-insert into ch_area_level2 values(null,'中山區',3);
-insert into ch_area_level2 values(null,'安樂區',3);
-insert into ch_area_level2 values(null,'信義區',3);
-insert into ch_area_level1 values(4,'臺南巿');
-insert into ch_area_level2 values(null,'東區',4);
-insert into ch_area_level2 values(null,'南區',4);
-insert into ch_area_level2 values(null,'北區',4);
-insert into ch_area_level2 values(null,'安南區',4);
-insert into ch_area_level2 values(null,'安平區',4);
-insert into ch_area_level2 values(null,'中西區',4);
-insert into ch_area_level2 values(null,'新營區',4);
-insert into ch_area_level2 values(null,'鹽水區',4);
-insert into ch_area_level2 values(null,'白河區',4);
-insert into ch_area_level2 values(null,'柳營區',4);
-insert into ch_area_level2 values(null,'後壁區',4);
-insert into ch_area_level2 values(null,'東山區',4);
-insert into ch_area_level2 values(null,'麻豆區',4);
-insert into ch_area_level2 values(null,'下營區',4);
-insert into ch_area_level2 values(null,'六甲區',4);
-insert into ch_area_level2 values(null,'官田區',4);
-insert into ch_area_level2 values(null,'大內區',4);
-insert into ch_area_level2 values(null,'佳里區',4);
-insert into ch_area_level2 values(null,'西港區',4);
-insert into ch_area_level2 values(null,'七股區',4);
-insert into ch_area_level2 values(null,'將軍區',4);
-insert into ch_area_level2 values(null,'北門區',4);
-insert into ch_area_level2 values(null,'學甲區',4);
-insert into ch_area_level2 values(null,'新化區',4);
-insert into ch_area_level2 values(null,'善化區',4);
-insert into ch_area_level2 values(null,'新巿區',4);
-insert into ch_area_level2 values(null,'安定區',4);
-insert into ch_area_level2 values(null,'山上區',4);
-insert into ch_area_level2 values(null,'玉井區',4);
-insert into ch_area_level2 values(null,'楠西區',4);
-insert into ch_area_level2 values(null,'南化區',4);
-insert into ch_area_level2 values(null,'左鎮區',4);
-insert into ch_area_level2 values(null,'仁德區',4);
-insert into ch_area_level2 values(null,'歸仁區',4);
-insert into ch_area_level2 values(null,'關廟區',4);
-insert into ch_area_level2 values(null,'龍崎區',4);
-insert into ch_area_level2 values(null,'永康區',4);
-insert into ch_area_level1 values(5,'高雄巿');
-insert into ch_area_level2 values(null,'鹽埕區',5);
-insert into ch_area_level2 values(null,'鼓山區',5);
-insert into ch_area_level2 values(null,'左營區',5);
-insert into ch_area_level2 values(null,'楠梓區',5);
-insert into ch_area_level2 values(null,'三民區',5);
-insert into ch_area_level2 values(null,'新興區',5);
-insert into ch_area_level2 values(null,'前金區',5);
-insert into ch_area_level2 values(null,'苓雅區',5);
-insert into ch_area_level2 values(null,'前鎮區',5);
-insert into ch_area_level2 values(null,'旗津區',5);
-insert into ch_area_level2 values(null,'小港區',5);
-insert into ch_area_level2 values(null,'鳳山區',5);
-insert into ch_area_level2 values(null,'鳥松區',5);
-insert into ch_area_level2 values(null,'仁武區',5);
-insert into ch_area_level2 values(null,'大社區',5);
-insert into ch_area_level2 values(null,'大樹區',5);
-insert into ch_area_level2 values(null,'大寮區',5);
-insert into ch_area_level2 values(null,'林園區',5);
-insert into ch_area_level2 values(null,'岡山區',5);
-insert into ch_area_level2 values(null,'茄萣區',5);
-insert into ch_area_level2 values(null,'永安區',5);
-insert into ch_area_level2 values(null,'橋頭區',5);
-insert into ch_area_level2 values(null,'梓官區',5);
-insert into ch_area_level2 values(null,'田寮區',5);
-insert into ch_area_level2 values(null,'阿蓮區',5);
-insert into ch_area_level2 values(null,'路竹區',5);
-insert into ch_area_level2 values(null,'燕巢區',5);
-insert into ch_area_level2 values(null,'彌陀區',5);
-insert into ch_area_level2 values(null,'湖內區',5);
-insert into ch_area_level2 values(null,'旗山區',5);
-insert into ch_area_level2 values(null,'六龜區',5);
-insert into ch_area_level2 values(null,'內門區',5);
-insert into ch_area_level2 values(null,'美濃區',5);
-insert into ch_area_level2 values(null,'杉林區',5);
-insert into ch_area_level2 values(null,'甲仙區',5);
-insert into ch_area_level2 values(null,'茂林區',5);
-insert into ch_area_level2 values(null,'桃源區',5);
-insert into ch_area_level2 values(null,'那瑪夏區',5);
-insert into ch_area_level1 values(6,'新北市');
-insert into ch_area_level2 values(null,'新莊區',6);
-insert into ch_area_level2 values(null,'林口區',6);
-insert into ch_area_level2 values(null,'五股區',6);
-insert into ch_area_level2 values(null,'蘆洲區',6);
-insert into ch_area_level2 values(null,'三重區',6);
-insert into ch_area_level2 values(null,'泰山區',6);
-insert into ch_area_level2 values(null,'新店區',6);
-insert into ch_area_level2 values(null,'石碇區',6);
-insert into ch_area_level2 values(null,'深坑區',6);
-insert into ch_area_level2 values(null,'坪林區',6);
-insert into ch_area_level2 values(null,'烏來區',6);
-insert into ch_area_level2 values(null,'板橋區',6);
-insert into ch_area_level2 values(null,'三峽區',6);
-insert into ch_area_level2 values(null,'鶯歌區',6);
-insert into ch_area_level2 values(null,'樹林區',6);
-insert into ch_area_level2 values(null,'中和區',6);
-insert into ch_area_level2 values(null,'土城區',6);
-insert into ch_area_level2 values(null,'瑞芳區',6);
-insert into ch_area_level2 values(null,'平溪區',6);
-insert into ch_area_level2 values(null,'雙溪區',6);
-insert into ch_area_level2 values(null,'貢寮區',6);
-insert into ch_area_level2 values(null,'金山區',6);
-insert into ch_area_level2 values(null,'萬里區',6);
-insert into ch_area_level2 values(null,'淡水區',6);
-insert into ch_area_level2 values(null,'汐止區',6);
-insert into ch_area_level2 values(null,'三芝區',6);
-insert into ch_area_level2 values(null,'石門區',6);
-insert into ch_area_level2 values(null,'八里區',6);
-insert into ch_area_level2 values(null,'永和區',6);
-insert into ch_area_level1 values(7,'宜蘭縣');
-insert into ch_area_level2 values(null,'宜蘭巿',7);
-insert into ch_area_level2 values(null,'頭城鎮',7);
-insert into ch_area_level2 values(null,'礁溪鄉',7);
-insert into ch_area_level2 values(null,'壯圍鄉',7);
-insert into ch_area_level2 values(null,'員山鄉',7);
-insert into ch_area_level2 values(null,'羅東鎮',7);
-insert into ch_area_level2 values(null,'五結鄉',7);
-insert into ch_area_level2 values(null,'冬山鄉',7);
-insert into ch_area_level2 values(null,'蘇澳鎮',7);
-insert into ch_area_level2 values(null,'三星鄉',7);
-insert into ch_area_level2 values(null,'大同鄉',7);
-insert into ch_area_level2 values(null,'南澳鄉',7);
-insert into ch_area_level1 values(8,'桃園縣');
-insert into ch_area_level2 values(null,'桃園巿',8);
-insert into ch_area_level2 values(null,'大溪鎮',8);
-insert into ch_area_level2 values(null,'中壢巿',8);
-insert into ch_area_level2 values(null,'楊梅市',8);
-insert into ch_area_level2 values(null,'蘆竹鄉',8);
-insert into ch_area_level2 values(null,'大園鄉',8);
-insert into ch_area_level2 values(null,'龜山鄉',8);
-insert into ch_area_level2 values(null,'八德市',8);
-insert into ch_area_level2 values(null,'龍潭鄉',8);
-insert into ch_area_level2 values(null,'平鎮市',8);
-insert into ch_area_level2 values(null,'新屋鄉',8);
-insert into ch_area_level2 values(null,'觀音鄉',8);
-insert into ch_area_level2 values(null,'復興鄉',8);
-insert into ch_area_level1 values(9,'嘉義巿');
-insert into ch_area_level2 values(null,'嘉義巿',9);
-insert into ch_area_level1 values(10,'新竹縣');
-insert into ch_area_level2 values(null,'竹東鎮',10);
-insert into ch_area_level2 values(null,'關西鎮',10);
-insert into ch_area_level2 values(null,'新埔鎮',10);
-insert into ch_area_level2 values(null,'竹北市',10);
-insert into ch_area_level2 values(null,'湖口鄉',10);
-insert into ch_area_level2 values(null,'橫山鄉',10);
-insert into ch_area_level2 values(null,'新豐鄉',10);
-insert into ch_area_level2 values(null,'芎林鄉',10);
-insert into ch_area_level2 values(null,'寶山鄉',10);
-insert into ch_area_level2 values(null,'北埔鄉',10);
-insert into ch_area_level2 values(null,'峨眉鄉',10);
-insert into ch_area_level2 values(null,'尖石鄉',10);
-insert into ch_area_level2 values(null,'五峰鄉',10);
-insert into ch_area_level1 values(11,'苗栗縣');
-insert into ch_area_level2 values(null,'苗栗巿',11);
-insert into ch_area_level2 values(null,'苑裡鎮',11);
-insert into ch_area_level2 values(null,'通霄鎮',11);
-insert into ch_area_level2 values(null,'公館鄉',11);
-insert into ch_area_level2 values(null,'銅鑼鄉',11);
-insert into ch_area_level2 values(null,'三義鄉',11);
-insert into ch_area_level2 values(null,'西湖鄉',11);
-insert into ch_area_level2 values(null,'頭屋鄉',11);
-insert into ch_area_level2 values(null,'竹南鎮',11);
-insert into ch_area_level2 values(null,'頭份鎮',11);
-insert into ch_area_level2 values(null,'造橋鄉',11);
-insert into ch_area_level2 values(null,'後龍鎮',11);
-insert into ch_area_level2 values(null,'三灣鄉',11);
-insert into ch_area_level2 values(null,'南庄鄉',11);
-insert into ch_area_level2 values(null,'大湖鄉',11);
-insert into ch_area_level2 values(null,'卓蘭鎮',11);
-insert into ch_area_level2 values(null,'獅潭鄉',11);
-insert into ch_area_level2 values(null,'泰安鄉',11);
-insert into ch_area_level1 values(12,'南投縣');
-insert into ch_area_level2 values(null,'南投巿',12);
-insert into ch_area_level2 values(null,'埔里鎮',12);
-insert into ch_area_level2 values(null,'草屯鎮',12);
-insert into ch_area_level2 values(null,'竹山鎮',12);
-insert into ch_area_level2 values(null,'集集鎮',12);
-insert into ch_area_level2 values(null,'名間鄉',12);
-insert into ch_area_level2 values(null,'鹿谷鄉',12);
-insert into ch_area_level2 values(null,'中寮鄉',12);
-insert into ch_area_level2 values(null,'魚池鄉',12);
-insert into ch_area_level2 values(null,'國姓鄉',12);
-insert into ch_area_level2 values(null,'水里鄉',12);
-insert into ch_area_level2 values(null,'信義鄉',12);
-insert into ch_area_level2 values(null,'仁愛鄉',12);
-insert into ch_area_level1 values(13,'彰化縣');
-insert into ch_area_level2 values(null,'彰化巿',13);
-insert into ch_area_level2 values(null,'鹿港鎮',13);
-insert into ch_area_level2 values(null,'和美鎮',13);
-insert into ch_area_level2 values(null,'北斗鎮',13);
-insert into ch_area_level2 values(null,'員林鎮',13);
-insert into ch_area_level2 values(null,'溪湖鎮',13);
-insert into ch_area_level2 values(null,'田中鎮',13);
-insert into ch_area_level2 values(null,'二林鎮',13);
-insert into ch_area_level2 values(null,'線西鄉',13);
-insert into ch_area_level2 values(null,'伸港鄉',13);
-insert into ch_area_level2 values(null,'福興鄉',13);
-insert into ch_area_level2 values(null,'秀水鄉',13);
-insert into ch_area_level2 values(null,'花壇鄉',13);
-insert into ch_area_level2 values(null,'芬園鄉',13);
-insert into ch_area_level2 values(null,'大村鄉',13);
-insert into ch_area_level2 values(null,'埔鹽鄉',13);
-insert into ch_area_level2 values(null,'埔心鄉',13);
-insert into ch_area_level2 values(null,'永靖鄉',13);
-insert into ch_area_level2 values(null,'社頭鄉',13);
-insert into ch_area_level2 values(null,'二水鄉',13);
-insert into ch_area_level2 values(null,'田尾鄉',13);
-insert into ch_area_level2 values(null,'埤頭鄉',13);
-insert into ch_area_level2 values(null,'芳苑鄉',13);
-insert into ch_area_level2 values(null,'大城鄉',13);
-insert into ch_area_level2 values(null,'竹塘鄉',13);
-insert into ch_area_level2 values(null,'溪州鄉',13);
-insert into ch_area_level1 values(14,'新竹巿');
-insert into ch_area_level2 values(null,'新竹巿',14);
-insert into ch_area_level1 values(15,'雲林縣');
-insert into ch_area_level2 values(null,'斗六市',15);
-insert into ch_area_level2 values(null,'斗南鎮',15);
-insert into ch_area_level2 values(null,'虎尾鎮',15);
-insert into ch_area_level2 values(null,'西螺鎮',15);
-insert into ch_area_level2 values(null,'土庫鎮',15);
-insert into ch_area_level2 values(null,'北港鎮',15);
-insert into ch_area_level2 values(null,'古坑鄉',15);
-insert into ch_area_level2 values(null,'大埤鄉',15);
-insert into ch_area_level2 values(null,'莿桐鄉',15);
-insert into ch_area_level2 values(null,'林內鄉',15);
-insert into ch_area_level2 values(null,'二崙鄉',15);
-insert into ch_area_level2 values(null,'崙背鄉',15);
-insert into ch_area_level2 values(null,'麥寮鄉',15);
-insert into ch_area_level2 values(null,'東勢鄉',15);
-insert into ch_area_level2 values(null,'褒忠鄉',15);
-insert into ch_area_level2 values(null,'台西鄉',15);
-insert into ch_area_level2 values(null,'元長鄉',15);
-insert into ch_area_level2 values(null,'四湖鄉',15);
-insert into ch_area_level2 values(null,'口湖鄉',15);
-insert into ch_area_level2 values(null,'水林鄉',15);
-insert into ch_area_level1 values(16,'嘉義縣');
-insert into ch_area_level2 values(null,'朴子市',16);
-insert into ch_area_level2 values(null,'布袋鎮',16);
-insert into ch_area_level2 values(null,'大林鎮',16);
-insert into ch_area_level2 values(null,'民雄鄉',16);
-insert into ch_area_level2 values(null,'溪口鄉',16);
-insert into ch_area_level2 values(null,'新港鄉',16);
-insert into ch_area_level2 values(null,'六腳鄉',16);
-insert into ch_area_level2 values(null,'東石鄉',16);
-insert into ch_area_level2 values(null,'義竹鄉',16);
-insert into ch_area_level2 values(null,'鹿草鄉',16);
-insert into ch_area_level2 values(null,'太保巿',16);
-insert into ch_area_level2 values(null,'水上鄉',16);
-insert into ch_area_level2 values(null,'中埔鄉',16);
-insert into ch_area_level2 values(null,'竹崎鄉',16);
-insert into ch_area_level2 values(null,'梅山鄉',16);
-insert into ch_area_level2 values(null,'番路鄉',16);
-insert into ch_area_level2 values(null,'大埔鄉',16);
-insert into ch_area_level2 values(null,'阿里山鄉',16);
-insert into ch_area_level1 values(17,'屏東縣');
-insert into ch_area_level2 values(null,'屏東巿',17);
-insert into ch_area_level2 values(null,'潮州鎮',17);
-insert into ch_area_level2 values(null,'東港鎮',17);
-insert into ch_area_level2 values(null,'恆春鎮',17);
-insert into ch_area_level2 values(null,'萬丹鄉',17);
-insert into ch_area_level2 values(null,'長治鄉',17);
-insert into ch_area_level2 values(null,'麟洛鄉',17);
-insert into ch_area_level2 values(null,'九如鄉',17);
-insert into ch_area_level2 values(null,'里港鄉',17);
-insert into ch_area_level2 values(null,'鹽埔鄉',17);
-insert into ch_area_level2 values(null,'高樹鄉',17);
-insert into ch_area_level2 values(null,'萬巒鄉',17);
-insert into ch_area_level2 values(null,'內埔鄉',17);
-insert into ch_area_level2 values(null,'竹田鄉',17);
-insert into ch_area_level2 values(null,'新埤鄉',17);
-insert into ch_area_level2 values(null,'枋寮鄉',17);
-insert into ch_area_level2 values(null,'新園鄉',17);
-insert into ch_area_level2 values(null,'崁頂鄉',17);
-insert into ch_area_level2 values(null,'林邊鄉',17);
-insert into ch_area_level2 values(null,'南州鄉',17);
-insert into ch_area_level2 values(null,'佳冬鄉',17);
-insert into ch_area_level2 values(null,'琉球鄉',17);
-insert into ch_area_level2 values(null,'車城鄉',17);
-insert into ch_area_level2 values(null,'滿州鄉',17);
-insert into ch_area_level2 values(null,'枋山鄉',17);
-insert into ch_area_level2 values(null,'三地門鄉',17);
-insert into ch_area_level2 values(null,'霧臺鄉',17);
-insert into ch_area_level2 values(null,'瑪家鄉',17);
-insert into ch_area_level2 values(null,'泰武鄉',17);
-insert into ch_area_level2 values(null,'來義鄉',17);
-insert into ch_area_level2 values(null,'春日鄉',17);
-insert into ch_area_level2 values(null,'獅子鄉',17);
-insert into ch_area_level2 values(null,'牡丹鄉',17);
-insert into ch_area_level1 values(18,'花蓮縣');
-insert into ch_area_level2 values(null,'花蓮巿',18);
-insert into ch_area_level2 values(null,'光復鄉',18);
-insert into ch_area_level2 values(null,'玉里鎮',18);
-insert into ch_area_level2 values(null,'新城鄉',18);
-insert into ch_area_level2 values(null,'吉安鄉',18);
-insert into ch_area_level2 values(null,'壽豐鄉',18);
-insert into ch_area_level2 values(null,'鳳林鎮',18);
-insert into ch_area_level2 values(null,'豐濱鄉',18);
-insert into ch_area_level2 values(null,'瑞穗鄉',18);
-insert into ch_area_level2 values(null,'富里鄉',18);
-insert into ch_area_level2 values(null,'秀林鄉',18);
-insert into ch_area_level2 values(null,'萬榮鄉',18);
-insert into ch_area_level2 values(null,'卓溪鄉',18);
-insert into ch_area_level1 values(19,'臺東縣');
-insert into ch_area_level2 values(null,'台東巿',19);
-insert into ch_area_level2 values(null,'成功鎮',19);
-insert into ch_area_level2 values(null,'關山鎮',19);
-insert into ch_area_level2 values(null,'卑南鄉',19);
-insert into ch_area_level2 values(null,'大武鄉',19);
-insert into ch_area_level2 values(null,'太麻里鄉',19);
-insert into ch_area_level2 values(null,'東河鄉',19);
-insert into ch_area_level2 values(null,'長濱鄉',19);
-insert into ch_area_level2 values(null,'鹿野鄉',19);
-insert into ch_area_level2 values(null,'池上鄉',19);
-insert into ch_area_level2 values(null,'綠島鄉',19);
-insert into ch_area_level2 values(null,'延平鄉',19);
-insert into ch_area_level2 values(null,'海端鄉',19);
-insert into ch_area_level2 values(null,'達仁鄉',19);
-insert into ch_area_level2 values(null,'金峰鄉',19);
-insert into ch_area_level2 values(null,'蘭嶼鄉',19);
-insert into ch_area_level1 values(20,'金門縣');
-insert into ch_area_level2 values(null,'金湖鎮',20);
-insert into ch_area_level2 values(null,'金沙鎮',20);
-insert into ch_area_level2 values(null,'金城鎮',20);
-insert into ch_area_level2 values(null,'金寧鄉',20);
-insert into ch_area_level2 values(null,'烈嶼鄉',20);
-insert into ch_area_level2 values(null,'烏坵鄉',20);
-insert into ch_area_level1 values(21,'澎湖縣');
-insert into ch_area_level2 values(null,'馬公巿',21);
-insert into ch_area_level2 values(null,'湖西鄉',21);
-insert into ch_area_level2 values(null,'白沙鄉',21);
-insert into ch_area_level2 values(null,'西嶼鄉',21);
-insert into ch_area_level2 values(null,'望安鄉',21);
-insert into ch_area_level2 values(null,'七美鄉',21);
-insert into ch_area_level1 values(22,'連江縣');
-insert into ch_area_level2 values(null,'南竿鄉',22);
-insert into ch_area_level2 values(null,'北竿鄉',22);
-insert into ch_area_level2 values(null,'莒光鄉',22);
-insert into ch_area_level2 values(null,'東引鄉',22);
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

@@ -7,9 +7,9 @@
             }
 
             $charge = D('charge');
-            $page = new Page($charge->total(),PAGESIZE,"");
+            $page = new Page($charge->where(array("delete"=>0))->total(),PAGESIZE,"");
                        
-            $chargeRes = $charge->limit($page->limit)->select();
+            $chargeRes = $charge->where(array("delete"=>0))->limit($page->limit)->select();
 
             $admin = D('admin');
             $user  = D('user');
@@ -45,5 +45,16 @@
             $this->assign('name',$_SESSION['name']);
             $this->assign('siteurl', SITEURL);
             $this->display();
-		}		
+		}
+
+        function delete(){
+            $ret = array(
+                "errNo"=>0
+            );
+            
+            $charge = D('charge');
+            $chargeRes = $charge->where("cid=".$_POST['cid'])->update('delete=1');
+            
+            echo json_encode($ret);
+        }   	
 	}

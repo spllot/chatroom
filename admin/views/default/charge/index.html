@@ -22,9 +22,10 @@
                             <th style="width:20%">充值時間</th>
                             <th style="width:15%">會員帳號</th>
                             <th style="width:15%">充值點數</th>
-                            <th style="width:20%">扣除點數</th>
-                            <th style="width:20%">剩餘點數</th>
+                            <th style="width:15%">扣除點數</th>
+                            <th style="width:15%">剩餘點數</th>
                             <th style="width:10%">操作者</th>
+                            <th style="width:10%">操作</th>
                           </tr>
                         </thead>
                         <tbody>
@@ -36,6 +37,9 @@
                                 <td><{$charges[ls].minus_point}></td>
                                 <td><{$charges[ls].point}></td>
                                 <td><{$charges[ls].operator}></td>
+                                <td>
+                                    <a href="#" class="delete label label-success" data-id="<{$charges[ls].cid}>">刪除</a>
+                                </td>
                               </tr>
                           <{/section}>
                         </tbody>
@@ -51,5 +55,27 @@
         </div>
     </div>
 </div>
+<script type="text/javascript">
+    $(document).ready(function($) {
+        var siteurl = $(".siteurl").val();
+        $(".delete").on("click",function(){
+            var me  = this;
+            var cid = $(this).attr("data-id");
+            $.ajax({
+                url: siteurl + "/charge/delete",
+                type: 'post',
+                dataType: 'json',
+                data: {cid: cid},
+            })
+            .done(function(data) {
+                if(data.errNo == 0){
+                    $(me).parents("tr").remove();
+                }else{
+                    alert("服务器异常，请稍后再试~~");
+                }
+            });  
+        });
+    });
+</script>
 <!-- 中间内容 and -->     
 <{include file="public/footer.html"}>

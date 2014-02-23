@@ -19,29 +19,36 @@
                       <table class="table table -bordered no-margin">
                         <thead>
                           <tr>
+                            <th style="width:10%">註冊時間</th>
                             <th style="width:10%">會員名</th>
-                            <th style="width:10%">密碼</th>
                             <th style="width:10%">昵稱</th>
-                            <th style="width:10%">郵箱</th>
+                            <th style="width:10%">頭像</th>
+                            <th style="width:10%">地區</th>
+                            <th style="width:5%">身高</th>
                             <th style="width:10%">會員類型</th>
-                            <th style="width:15%">自我简介</th>
-                            <th style="width:15%">自我介紹</th>
                             <th style="width:10%">剩餘點數</th>
                             <th style="width:10%">聊天次數限定</th>
+                            <th style="width:20%">操作</th>
                           </tr>
                         </thead>
                         <tbody>
                           <{section loop=$users name="ls"}>
                               <tr>
+                                <td><{$users[ls].reg_time}></td>
                                 <td><{$users[ls].name}></td>
-                                <td><a title="<{$users[ls].pass}>"><{$users[ls].show_pass}></a></td>
                                 <td><{$users[ls].nick}></td>
-                                <td><{$users[ls].email}></td>
+                                <!-- <td><a href="<{$users[ls].imgurl}>" target="_blank">查看</a></td> -->
+                                <td><img height="35px" width="35px" src="<{$users[ls].imgurl}>"/></td>
+                                <td><{$users[ls].area}></td>
+                                <td><{$users[ls].height}></td>
                                 <td><{$users[ls].type}></td>
-                                <td><a title="<{$users[ls].info}>"><{$users[ls].show_info}></a></td>
-                                <td><a title="<{$users[ls].introduction}>"><{$users[ls].show_introduction}></a></td>
                                 <td><{$users[ls].point}></td>
                                 <td><{$users[ls].chat_time_limit}></td>
+                                <td>
+                                    <a href="#" class="status label label-success" data-status="<{$users[ls].status}>" data-id="<{$users[ls].uid}>"><{$users[ls].status_info}></a>
+                                    <a href="<{$siteurl}>/user/info/uid/<{$users[ls].uid}>" class="view label label-success" data-id="<{$users[ls].uid}>" target="_blank">查看</a>
+                                    <a href="#" class="delete label label-success" data-id="<{$users[ls].uid}>">刪除</a>
+                                </td>
                               </tr>
                           <{/section}>
                         </tbody>
@@ -57,5 +64,49 @@
         </div>
     </div>
 </div>
+<script type="text/javascript">
+    $(document).ready(function($) {
+        var siteurl = $(".siteurl").val();
+        $(".delete").on("click",function(){
+            var me  = this;
+            var uid = $(this).attr("data-id");
+            $.ajax({
+                url: siteurl + "/user/delete",
+                type: 'post',
+                dataType: 'json',
+                data: {uid: uid},
+            })
+            .done(function(data) {
+                if(data.errNo == 0){
+                    $(me).parents("tr").remove();
+                }else{
+                    alert("服务器异常，请稍后再试~~");
+                }
+            });  
+        });
+        $(".status").on("click",function(){
+            var me  = this;
+            var uid = $(this).attr("data-id");
+            var status = $(this).attr("data-status");
+            var info = $(this).html();
+            var newStatus = status == 1 ? 0 : 1;
+            var newInfo = info == "停用" ? "啟用" : "停用";
+            $.ajax({
+                url: siteurl + "/user/changeStatus",
+                type: 'post',
+                dataType: 'json',
+                data: {uid: uid,status:newStatus},
+            })
+            .done(function(data) {
+                if(data.errNo == 0){
+                    $(me).attr("data-status",newStatus);
+                    $(me).html(newInfo);
+                }else{
+                    alert("服务器异常，请稍后再试~~");
+                }
+            });  
+        });
+    });
+</script>
 <!-- 中间内容 and -->     
 <{include file="public/footer.html"}>

@@ -18,3 +18,11 @@
             return "差";
         }
     }
+    function getUserStatusInfoBytype($type){
+        if($type == 0){
+            return "停用";
+        }
+        if($type == 1){
+            return "啟用";
+        }
+    }

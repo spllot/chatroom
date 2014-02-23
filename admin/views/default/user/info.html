@@ -1,0 +1,75 @@
+<{include file="public/header.html"}>
+<!-- 中间内容 start -->
+<div class="page-title">
+        <div class="row">
+            <div class="col-md-6 col-sm-6 col-xs-6">   
+            </div>
+            <div class="col-md-6 col-sm-6 col-xs-6">
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12 col-sm-6 col-xs-6">
+            <div class="panel panel-default">
+                <div class="panel-heading clearfix">
+                    <h3 class="panel-title">會員信息</h3>
+                </div>
+                <div class="panel-body">
+                    <div class="table-responsive">
+                      <table class="table table -bordered no-margin">
+                        <thead>
+                          <tr>
+                            <th style="width:10%">註冊時間</th>
+                            <th style="width:10%">會員名</th>
+                            <th style="width:10%">昵稱</th>
+                            <th style="width:10%">郵箱</th>
+                            <th style="width:10%">頭像</th>
+                            <th style="width:10%">地區</th>
+                            <th style="width:10%">身高</th>
+                            <th style="width:10%">會員類型</th>
+                            <th style="width:10%">剩餘點數</th>
+                            <th style="width:10%">聊天次數限定</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td><{$user.reg_time}></td>
+                            <td><{$user.name}></td>
+                            <td><{$user.nick}></td>
+                            <td><{$user.email}></td>
+                            <td><img height="35px" width="35px" src="<{$user.imgurl}>"/></td>
+                            <td><{$user.area}></td>
+                            <td><{$user.height}></td>
+                            <td><{$user.type}></td>
+                            <td><{$user.point}></td>
+                            <td><{$user.chat_time_limit}></td> 
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+
+                    <div class="table-responsive">
+                      <table class="table table -bordered no-margin">
+                        <thead>
+                          <tr>
+                            <th style="width:50%">自我簡介</th>
+                            <th style="width:50%">自我介紹</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td><{$user.info}></td>
+                            <td><{$user.introduction}></td>                          
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                </div>
+                <div class="panel-footer clearfix">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- 中间内容 and -->     
+<{include file="public/footer.html"}>
