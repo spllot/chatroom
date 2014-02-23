@@ -1,55 +1,61 @@
 <{include file="public/header.html"}>
-	<!-- 中间内容 start -->
-	<div class="page-title">
-		<div class="row">
-			<div class="col-md-6 col-sm-6 col-xs-6">
-		        
-	      	</div>
-	      	<div class="col-md-6 col-sm-6 col-xs-6">
-	      	</div>
-		</div>
-	</div>
-	<div class="row">
-		<div class="col-md-12 col-sm-6 col-xs-6">
-	        <div class="panel panel-default">
-	        	<div class="panel-heading clearfix">
-	        		<h3>會員信息</h3>
-	        	</div>
-	        	<div class="panel-body">
-	        		<div class="ui-form-item">
-	        			<label class="ui-label">會員名</label>
-	        			<label class="ui-lalel"><{$user.name}></label>
-	        			<label class="ui-label">密碼</label>
-	        			<label class="ui-lalel"><{$user.pass}></label>
-	        		</div>
-	        		<div class="ui-form-item">
-	        			<label class="ui-label">昵稱</label>
-	        			<label class="ui-lalel"><{$user.nick}></label>
-	        			<label class="ui-label">郵箱</label>
-	        			<label class="ui-lalel"><{$user.email}></label>
-	        			<label class="ui-label">會員類型</label>
-	        			<label class="ui-lalel"><{$user.type}></label>
-	        		</div>
-	        		<div class="ui-form-item">
-	        			<label class="ui-label">自我简介</label>
-	        			<label class="ui-lalel"><{$user.info}></label>
-	        		</div>
-	        		<div class="ui-form-item">
-	        			<label class="ui-label">自我介紹</label>
-	        			<label class="ui-lalel"><{$user.introduction}></label>
-	        		</div>
-	        		<div class="ui-form-item">
-	        			<label class="ui-label">剩餘點數</label>
-	        			<label class="ui-lalel"><{$user.point}></label>
-	        			<label class="ui-label">聊天次數限定</label>
-	        			<label class="ui-lalel"><{$user.chat_time_limit}></label>
-	        		</div>
-	        	</div>
-	        	<div class="panel-footer clearfix">
-	        	</div>
-	        </div>
-      	</div>
-	</div>
+<!-- 中间内容 start -->
+<div class="page-title">
+        <div class="row">
+            <div class="col-md-6 col-sm-6 col-xs-6">   
+            </div>
+            <div class="col-md-6 col-sm-6 col-xs-6">
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12 col-sm-6 col-xs-6">
+            <div class="panel panel-default">
+                <div class="panel-heading clearfix">
+                    <h3 class="panel-title">會員信息</h3>
+                </div>
+                <div class="panel-body">
+                    <div class="table-responsive">
+                      <table class="table table -bordered no-margin">
+                        <thead>
+                          <tr>
+                            <th style="width:10%">會員名</th>
+                            <th style="width:10%">密碼</th>
+                            <th style="width:10%">昵稱</th>
+                            <th style="width:10%">郵箱</th>
+                            <th style="width:10%">會員類型</th>
+                            <th style="width:15%">自我简介</th>
+                            <th style="width:15%">自我介紹</th>
+                            <th style="width:10%">剩餘點數</th>
+                            <th style="width:10%">聊天次數限定</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <{section loop=$users name="ls"}>
+                              <tr>
+                                <td><{$users[ls].name}></td>
+                                <td><a title="<{$users[ls].pass}>"><{$users[ls].show_pass}></a></td>
+                                <td><{$users[ls].nick}></td>
+                                <td><{$users[ls].email}></td>
+                                <td><{$users[ls].type}></td>
+                                <td><a title="<{$users[ls].info}>"><{$users[ls].show_info}></a></td>
+                                <td><a title="<{$users[ls].introduction}>"><{$users[ls].show_introduction}></a></td>
+                                <td><{$users[ls].point}></td>
+                                <td><{$users[ls].chat_time_limit}></td>
+                              </tr>
+                          <{/section}>
+                        </tbody>
+                      </table>
+                    </div>
+                    <div class="pager">
+                      <{$page}>
+                    </div>
+                </div>
+                <div class="panel-footer clearfix">
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 <!-- 中间内容 and -->     
 <{include file="public/footer.html"}>

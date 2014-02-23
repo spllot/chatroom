@@ -1,1 +1,0 @@
-创建文件 ./admin/controls/index.class.php 成功.

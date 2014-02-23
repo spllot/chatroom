@@ -1,0 +1,80 @@
+<{include file="public/header.html"}>
+    <!-- 中间内容 start -->
+    <div class="page-title">
+        <div class="row">
+            <div class="col-md-6 col-sm-6 col-xs-6">   
+            </div>
+            <div class="col-md-6 col-sm-6 col-xs-6">
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12 col-sm-6 col-xs-6">
+            <div class="panel panel-default">
+                <div class="panel-heading clearfix">
+                    <h3 class="panel-title">會員登錄</h3>
+                </div>
+                <div class="panel-body login-form">
+                    <span class="login-error red" style="display:none">用戶名或密碼錯誤</span>
+                    <div class="ui-form-item">
+                        <label class="ui-label"><span class="red">*</span>用戶名:</label>
+                        <input type="text" name="uname" class="uname ui-input" placeholder="會員名/昵称"/>
+                        <span class="name-error red error" style="display:none">用戶名不能為空</span>
+                    </div>
+                    <div class="ui-form-item">
+                        <label class="ui-label"><span class="red">*</span>密碼:</label>
+                        <input type="password" name="upass" class="upass ui-input" placeholder="密碼"/>
+                        <span class="pass-error red error" style="display:none">密碼不能為空</span>
+                    </div>
+                     <div class="ui-form-item">
+                        <input type="button" name="submit" class="login" value="登錄"/>
+                    </div>
+                </div>
+                <div class="panel-footer clearfix">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    $(".login").on("click",function(){
+        var flag = true;
+        var name = $(".uname").val() || "";
+        var pass = $(".upass").val() || "";
+        if(name == ""){
+            $(".name-error").show();
+            $(".login-error").hide();
+            flag = false;
+        }else{
+            $(".name-error").hide();
+        }
+        if(pass == ""){
+            $(".pass-error").show();
+            $(".login-error").hide();
+            flag = false;
+        }else{
+            $(".pass-error").hide();
+        }
+        if(!flag){
+            return;
+        }
+        var siteurl = $(".siteurl").val();
+        $.ajax({
+            url: siteurl + "/user/ulogin",
+            type: 'post',
+            dataType: 'json',
+            data: {name: name,pass:pass},
+        })
+        .done(function(data) {
+            if(data.errNo == 0){
+                location.href = siteurl + "/user/index";
+            }else{
+                $(".name-error").hide();
+                $(".pass-error").hide();
+                $(".login-error").show();
+            }
+        });
+    });
+</script>
+<!-- 中间内容 and -->     
+<{include file="public/footer.html"}>
