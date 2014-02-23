@@ -1,0 +1,41 @@
+<{include file="public/head.html"}>
+<div class="row newrow">
+	<div class="span8">
+        <h3><{ $chapter.ptitle }></h3>
+        <p><{ $chapter.pcontent|html_entity_decode }></p>
+        <div class="row-fluid">
+            <div class="span6 afterpost">
+                <h4>相关文章</h4>
+                <ul>
+                    <{section loop=$cateChapters name="ls"}>
+                        <li>
+                        <a href="<{$app}>/index/post/pid/<{$cateChapters[ls].pid}>" target="_blank"><{$cateChapters[ls].ptitle}></a>
+                        </li>
+                    <{/section}>
+
+                </ul>            
+            </div>
+            <div class="span6 afterpost">bb</div>
+        </div>
+    </div>
+    <div class="span4">
+        <div class="row-fluid">
+            <div class="span12">
+                <div class="hot">
+                <h4>热度排行</h4>
+                <ol>
+                    <{section loop=$recChapters name="ls"}>
+                        <li>
+                        <span><{$smarty.section.ls.index+1}></span>
+                        <a href="<{$app}>/index/post/pid/<{$recChapters[ls].pid}>" target="_blank"><{$recChapters[ls].ptitle}></a>
+                        </li>
+                    <{/section}>
+
+                </ol>            
+                </div>
+ 
+            </div>
+        </div>
+    </div>
+</div>
+<{include file="public/foot.html"}>

@@ -1,0 +1,70 @@
+<div class="row newrow">
+        <div class="span12">
+            <div class="tabbable" id="tabs-185497">
+				<ul class="nav nav-tabs">
+					<li class="active">
+						<a href="#panel-62400" data-toggle="tab">南宁优秀商家</a>
+					</li>
+					<li>
+						<a href="#panel-256320" data-toggle="tab">友情链接</a>
+					</li>
+				</ul>
+				<div class="tab-content">
+					<div class="tab-pane active" id="panel-62400"><!-- Start tab1 -->
+                        <{section loop=$imgs4 name="ls"}>
+
+                        <{if $smarty.section.ls.index is div by 6 and $smarty.section.ls.index != 0}>
+                         </div>
+                        <{/if}>
+
+                        <{if $smarty.section.ls.index is div by 6}>
+                        <div class="row-fluid brandrow">
+                        <{/if}>
+
+                            <div class="span2">
+                                <a href="<{$imgs4[ls].url}>" class="thumbnail" title="<{$imgs4[ls].title}>" target="_blank"><img src="<{$public}>/uploads/<{$imgs4[ls].src}>"/></a>
+                            </div>
+                        <{/section}>
+                        </div>
+                    </div><!-- End tab1 -->
+					<div class="tab-pane" id="panel-256320"><!-- Start tab2 -->
+                        <div class="row-fluid">
+                            <div class="span12">
+                                <ul class="inline">
+                                    <{section loop=$links name="ls"}>
+
+                                    <li>
+                                    <a href="<{$links[ls].url}>" alt="<{$links[ls].alt}>" target="_blank"><{$links[ls].title}></a>
+                                        </li>
+                                    <{/section}>
+                                </ul>
+                            </div>
+                        </div>
+
+					</div><!-- End tab2 -->
+				</div>
+            </div>
+        </div>
+	</div>
+
+
+
+
+    <div class="row">
+        <hr />
+		<div class="span4 offset4">
+            <p>&copy;2013 南宁电动车网</p>
+		</div>
+	</div>
+</div>
+
+
+
+    <script src="<{$res}>/js/jquery.min.js"></script>
+    <script src="<{$res}>/js/bootstrap.min.js"></script>
+    <script src="http://tjs.sjs.sinajs.cn/open/api/js/wb.js" type="text/javascript" charset="utf-8"></script>
+    <script>$('.carousel').carousel()</script>
+
+  </body>
+</html>
+

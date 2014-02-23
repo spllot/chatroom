@@ -1,0 +1,119 @@
+<{include file="public/head.html"}>
+
+	<div class="row newrow">
+        <div class="span9"><!-- 幻灯片开始 -->
+            <div class="carousel slide" id="carousel-288420" >
+				<ol class="carousel-indicators">
+                    <{section loop=$imgs3 name="ls"}>
+                    <{if $smarty.section.ls.index == 0 }>
+					<li class="active" data-slide-to="0" data-target="#carousel-288420"></li>
+                    <{else}>
+                    <li data-slide-to="<{$smarty.section.ls.index}>" data-target="#carousel-288420"></li>
+                    <{/if}>
+                    <{/section}>
+				</ol>
+				<div class="carousel-inner">
+                    <{section loop=$imgs3 name="ls"}>
+                    <{if $smarty.section.ls.index == 0 }>
+                    <div class="item active">
+                    <{else}>
+                    <div class="item">
+                    <{/if}>
+                    <img alt="" src="<{$public}>/uploads/<{$imgs3[ls].src}>" />
+						<div class="carousel-caption">
+							<p>
+                            <{$imgs3[ls].title}>
+							</p>
+						</div>
+                    </div>
+                    <{/section}>
+				</div> <a data-slide="prev" href="#carousel-288420" class="left carousel-control">&lsaquo;</a> <a data-slide="next" href="#carousel-288420" class="right carousel-control">&rsaquo;</a>
+                <script>$('.carousel').carousel()</script>
+			</div>
+
+        </div><!-- 幻灯片结束 -->
+		<div class="span3">
+            <div class="hot">
+            <h4>热度排行</h4>
+            <ol>
+                <{section loop=$recChapters name="ls"}>
+                    <li>
+                    <span><{$smarty.section.ls.index+1}></span>
+                    <a href="<{$app}>/index/post?pid=<{$recChapters[ls].pid}>" target="_blank"><{$recChapters[ls].ptitle}></a>
+                    </li>
+                <{/section}>
+
+            </ol>            
+            </div>
+		</div>
+	</div>
+    <div class="row"><!-- 分类展示开始 -->
+		<div class="span9">
+            <{foreach from=$chapter key=k item=v name=outer}>
+                <{if $smarty.foreach.outer.index < 3}>
+                    <{if $smarty.foreach.outer.index == 0}>
+                    <div class="row">
+                    <{else}>
+                    <div class="row nfirst">
+                    <{/if}>
+                        <{foreach from=$v key=index item=item name="inner"}>
+                            <{if $smarty.foreach.inner.index == 0}>
+                                <div class="span5">
+                                    <div class="media">
+                                        <a href="<{$app}>/index/post/pid/<{$item.pid}>" class="pull-left"><img src="<{$public}>/uploads/<{$item.pimgs}>" class="media-object media-img" /></a>
+                                        <div class="media-body">
+                                            <h4 class="media-heading">
+                                                <a href="<{$app}>/index/post/pid/<{$item.pid}>"><{$item.ptitle}></a></h4>
+                                            <p><{$item.pcontent}></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            <{/if}>
+                            <{if $smarty.foreach.inner.index > 0 && $smarty.foreach.inner.index <=4 }>
+                                <{if $smarty.foreach.inner.index == 1}>
+                                    <div class="span4">
+                                        <ul>
+                                <{/if}>
+                                            <li>
+                                                <a href="<{$app}>/index/post/pid/<{$item.pid}>"><{$item.ptitle}></a>
+                                            </li>
+                                <{if $smarty.foreach.inner.index == $smarty.foreach.inner.last || $smarty.foreach.inner.index == 4}>
+                                        </ul>
+                                        <div class="more"><a href="#">更多>></a></div>
+                                    </div>
+                                <{/if}>
+                            <{/if}>
+                        <{/foreach}>
+                    </div>
+                <{/if}>
+            <{/foreach}>  
+		</div>
+    <{foreach from=$chapter key=k item=v name=outer}>
+        <{if $smarty.foreach.outer.index == 3}>
+		<div class="span3">
+            <div class="thumbnail">
+        <{foreach from=$v key=index item=item name="inner"}>
+            <{if $smarty.foreach.inner.index == 0}>
+                <img class="media2-img" src="<{$public}>/uploads/<{$item.pimgs}>" />
+                <div class="caption">
+                    <h4>
+                        <a href="<{$app}>/index/post/pid/<{$item.pid}>"><{$item.ptitle}></a>
+                    </h4>
+                    <ul>
+            <{else if $smarty.foreach.inner.index <= 4}>
+                        <li>
+                            <a href="<{$app}>/index/post/pid/<{$item.pid}>"><{$item.ptitle}></a>
+                        </li>
+            <{/if}>
+        <{/foreach}>
+                    </ul>
+                    <div class="more"><a href="#">更多>></a></div>
+
+                </div>
+            </div>
+		</div>
+        <{/if}>
+    <{/foreach}>
+	</div><!-- 分类展示结束 -->
+
+    <{include file="public/foot.html"}>
