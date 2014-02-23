@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- 主机: localhost
--- 生成日期: 2014 年 02 月 23 日 15:20
+-- 生成日期: 2014 年 02 月 23 日 17:11
 -- 服务器版本: 5.5.8
 -- PHP 版本: 5.3.5
 
@@ -645,7 +645,7 @@ CREATE TABLE IF NOT EXISTS `ch_user` (
   `rank` int(10) NOT NULL COMMENT '会员级别（聊天级别：成人级等）',
   `info` text NOT NULL COMMENT '自我简介（年纪、性别）',
   `introduction` text NOT NULL COMMENT '自我介绍',
-  `point` float NOT NULL COMMENT '现有点数',
+  `point` float NOT NULL DEFAULT '0' COMMENT '现有点数',
   `reg_time` varchar(100) NOT NULL COMMENT '用户注册时间',
   `last_login_time` varchar(100) NOT NULL COMMENT '上次登录时间',
   `chat_time_limit` int(10) NOT NULL COMMENT '聊天次数限定',
