@@ -1,13 +1,14 @@
 <?php
 	class UserAction extends Common {
 		function index(){
-            $uid  = $_SESSION['uid'] ?  $_SESSION['uid'] : 1;
+            $uid  = $_SESSION['uid'] ?  $_SESSION['uid'] : 3;
             $user = D('user');
             $userRes = $user->where("uid=".$uid)->select();
             if($userRes && count($userRes)>0){
                 $userInfo = $userRes[0];
                 $userInfo['type'] = getUserType($userInfo.type);
                 $this->assign('user',$userInfo);
+                var_dump($userInfo);
             }else{
                 $this->assign('result','none');
             }

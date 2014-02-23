@@ -18,6 +18,7 @@
 		static function connect(){
 			if(is_null(self::$mysqli)) {
 				$mysqli=new mysqli(HOST, USER, PASS, DBNAME);
+				$mysqli->query("SET NAMES 'utf8'");
 				if (mysqli_connect_errno()) {
 					Debug::addmsg("<font color='red'>连接失败: ".mysqli_connect_error().",请查看config.inc.php文件设置是否有误！</font>");
 					return false;

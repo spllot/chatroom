@@ -25,7 +25,7 @@
 
 					$pdo=new PDO($dsn, USER, PASS, array(PDO::ATTR_PERSISTENT=>false));
                     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-                    //$pdo->query("set names utf8");
+                    $pdo->query("set names utf8");
 					self::$pdo=$pdo;
 					return $pdo;
 				}catch(PDOException $e){
