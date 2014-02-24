@@ -18,7 +18,8 @@
 		private $pageNum;  //页数
 		private $page;
 		//在分页信息中显示内容，可以自己设置
-		private $config=array('head'=>"条记录", "prev"=>"上一页", "next"=>"下一页", "first"=>"首页", "last"=>"末页");
+		//private $config=array('head'=>"条记录", "prev"=>"上一页", "next"=>"下一页", "first"=>"首页", "last"=>"末页");
+		private $config=array('head'=>"條記錄", "prev"=>"上一頁", "next"=>"下一頁", "first"=>"首頁", "last"=>"末頁");
 		private $listNum=10; //默认分页列表显示的个数
 
 		/**

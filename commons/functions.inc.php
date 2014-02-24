@@ -1,10 +1,10 @@
 <?php
 	function getUserType($type){
 		if($type == 1){
-			return "一般会员";
+			return "一般會員";
 		}
 		if($type == 2){
-			return "聊天会员";
+			return "聊天會員";
 		}
 	}
     function getRankByType($type){
