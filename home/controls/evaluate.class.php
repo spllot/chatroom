@@ -26,8 +26,8 @@
             $evalRes = $eval->where("uid2=".$uid)->select();
             if($evalRes && count($evalRes) > 0){
                 foreach ($evalRes as $key => $value) {
-                    $evalRes['create_time'] = date('Y-m-d H:m:i',$evalRes['create_time']);
-                    $evalRes['rank_info']   = getRankByType($evalRes['rank_info']);
+                    $evalRes[$key]['create_time'] = date('Y-m-d H:m:i',$evalRes[$key]['create_time']);
+                    $evalRes[$key]['rank_info']   = getRankByType(intval($evalRes[$key]['rank']));
                 }
                 $ret['data'] = $evalRes;
             }
@@ -48,8 +48,8 @@
             $evalRes = $eval->where("uid1=".$uid)->select();
             if($evalRes && count($evalRes) > 0){
                 foreach ($evalRes as $key => $value) {
-                    $evalRes['create_time'] = date('Y-m-d H:m:i',$evalRes['create_time']);
-                    $evalRes['rank_info']   = getRankByType($evalRes['rank_info']);
+                    $evalRes[$key]['create_time'] = date('Y-m-d H:m:i',$evalRes[$key]['create_time']);
+                    $evalRes[$key]['rank_info']   = getRankByType(intval($evalRes[$key]['rank']));
                 }
                 $ret['data'] = $evalRes;
             }
@@ -58,7 +58,7 @@
         }
 
         //获取B对A的被评价记录 GET传入uid1 uid2
-        function getEvaluatesByUid1(){
+        function getEvaluatesByUid1AndUid2(){
             $ret = array(
                 "errNo"=>0,
                 "data"=>array()
@@ -68,11 +68,11 @@
             $uid2 = isset($_GET['uid2']) ? $_GET['uid2'] : 0;
             $eval  = D('evaluate');
             
-            $evalRes = $eval->where("uid1=".$uid." AND uid2=".$uid2)->select();
+            $evalRes = $eval->where("uid1=".$uid1." AND uid2=".$uid2)->select();
             if($evalRes && count($evalRes) > 0){
                 foreach ($evalRes as $key => $value) {
-                    $evalRes['create_time'] = date('Y-m-d H:m:i',$evalRes['create_time']);
-                    $evalRes['rank_info']   = getRankByType($evalRes['rank_info']);
+                    $evalRes[$key]['create_time'] = date('Y-m-d H:m:i',$evalRes[$key]['create_time']);
+                    $evalRes[$key]['rank_info']   = getRankByType(intval($evalRes[$key]['rank']));
                 }
                 $ret['data'] = $evalRes;
             }

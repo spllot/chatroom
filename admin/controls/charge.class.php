@@ -82,5 +82,36 @@
 
             $ret['remain_point'] = $point;
             echo json_encode($ret);
-        }  	
+        } 
+
+        function addPoint(){
+            $ret = array(
+                "errNo"=>0
+            );
+            $name = isset($_POST['name']) ? $_POST['name'] : "";
+            $point= isset($_POST['point']) ? intval($_POST['point']) : 0;
+
+            $user = D('user');
+            $userRes = $user->where("name='".$name."'")->select();
+
+            if(!$userRes || count($userRes) == 0){
+                $ret['errNo'] = 1;
+                echo json_encode($ret);
+                return;
+            }
+            $uid   = $userRes[0]['uid'];
+            $newPoint = intval($userRes[0]['point']) + $point;
+            $operator = $_SESSION['uid'];
+            $user->where('uid='.$uid)->update("point=".$newPoint);
+
+            $charge = D('charge');
+            $_POST['uid'] = $uid;
+            $_POST['operator']  = $operator;
+            $_POST['add_point'] = $point;
+            $_POST['minus_point'] = $minus_point;
+            $_POST['charge_time'] = time();
+            $charge->insert($_POST);
+
+            echo json_encode($ret);
+        } 	
 	}
