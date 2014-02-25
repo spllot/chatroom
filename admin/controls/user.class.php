@@ -5,9 +5,14 @@
                 $this->redirect("user/login");
                 return;
             }
-            $user = D('user');
-            $page = new Page($user->where(array("delele_flag"=>0))->total(),PAGESIZE,"");              
-            $userRes = $user->where(array("delele_flag"=>0))->limit($page->limit)->select();
+            $user  = D('user');
+            $query = isset($_GET['query']) ? $_GET['query'] : "";
+            $where = "delele_flag=0";
+            if($query != ""){
+                $where = $where . " AND name like '%" . $query . "%'";
+            }
+            $page = new Page($user->where($where)->total(),PAGESIZE,"");              
+            $userRes = $user->where($where)->limit($page->limit)->select();
 
             foreach($userRes as $key => $item){
                 $userRes[$key]['type'] = getUserType($userRes[$key]['type']);
@@ -48,7 +53,7 @@
                     $area_level2_name   = $areaRes[0]['aname'];
                     $area_level2_arr[$area_level2_id]  = $areaRes[0]['aname'];
                 }
-                $userRes[$key]['area'] = $area_level1_name." ".$area_level2_name; 
+                $userRes[$key]['area'] = $area_level1_name."<br/>".$area_level2_name; 
             }
 
             $this->assign('users',$userRes);
@@ -82,7 +87,7 @@
             $areaRes = $area->where('aid='.$area_level2_id)->select();
             $area_level2_name   = $areaRes[0]['aname'];
 
-            $userInfo['area'] = $area_level1_name." ".$area_level2_name; 
+            $userInfo['area'] = $area_level1_name."<br/>".$area_level2_name; 
             
             $this->assign('user',$userInfo);
             $this->assign('name',$_SESSION['name']);

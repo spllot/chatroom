@@ -1829,29 +1829,53 @@ ul.roman-list {
 }
 .login-form .ui-input{
   display: inline-block;
-  outline: 0;
-  margin-right: 20px;
-  font-family: Arial;
-  font-size: 14px;
-  font-weight: normal;
-  background-color: #fff;
-  border: 1px solid #ccc;
-  color: #333;
-  -webkit-box-shadow: inset 0 1px 2px rgba(0,0,0,.1);
-  -moz-box-shadow: inset 0 1px 2px rgba(0,0,0,.1);
-  box-shadow: inset 0 1px 2px rgba(0,0,0,.1);
-  height: 30px;
-  width: 295px;
-  padding: 5px;
-  -webkit-transition: border linear .2s;
-  -moz-transition: border linear .2s;
-  -ms-transition: border linear .2s;
-  -o-transition: border linear .2s;
-  transition: border linear .2s;
+  width: 300px;
 }
-.login-form .login{
-  margin-left: 200px;
+.login-form input.login{
+  margin-left: 180px;
+  width:100px;
 }
-.panel-body{
-  font-size: 12px;
+.pager span,.pager b,.pager a,.pager div{
+  font:normal 18px '微軟粗黑體';
+}
+.pager b a:hover{
+  background: #e6e6e6;
+}
+.pager b a{
+  margin: 1px;
+  padding: 5px 10px;
+  background: #87ceeb;
+  color: white;
+}
+.pager span{
+  text-decoration: none;
+  -webkit-transition: All 0.5s ease;
+  -moz-transition: All 0.5s ease;
+  -ms-transition: All 0.5s ease;
+  -o-transition: All 0.5s ease;
+  transition: All 0.5s ease;
+  color: white;
+  background: #f2f2f2;
+  margin: 1px;
+  padding: 5px 10px;
+}
+.charge-form .ui-input{
+  width: 200px;
+  display: inline-block;
+}
+.charge-form #charge-btn{
+  width: 60px;
+  display: inline-block;
+}
+.charge-form .red{
+  color: red;
+  margin-left: 10px;
+  font-size: 16px;
+}
+.panel .custom-search{
+  margin-top: -22px;
+  line-height: 25px;
+}
+.panel .custom-search i{
+  margin-top: -32px;
 }

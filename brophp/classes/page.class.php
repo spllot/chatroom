@@ -126,7 +126,7 @@
 			}
 
 			if($this->pageNum > 1)
-				$linkPage.="<span style='padding:1px 2px;background:#BBB;color:white'>{$this->page}</span>&nbsp;";
+				$linkPage.="<span style='background: #e6e6e6;'>{$this->page}</span>&nbsp;";
 			
 
 			for($i=1; $i<=$inum; $i++){
@@ -171,15 +171,15 @@
 			$arr=func_get_args();
 
 			$html[0]="&nbsp;共<b> {$this->total} </b>{$this->config["head"]}&nbsp;";
-			$html[1]="&nbsp;本页 <b>".$this->disnum()."</b> 条&nbsp;";
-			$html[2]="&nbsp;本页从 <b>{$this->start()}-{$this->end()}</b> 条&nbsp;";
-			$html[3]="&nbsp;<b>{$this->page}/{$this->pageNum}</b>页&nbsp;";
+			$html[1]="&nbsp;本頁 <b>".$this->disnum()."</b> 條&nbsp;";
+			$html[2]="&nbsp;本頁從 <b>{$this->start()}-{$this->end()}</b> 頁&nbsp;";
+			$html[3]="&nbsp;<b>{$this->page}/{$this->pageNum}</b>頁&nbsp;";
 			$html[4]=$this->firstprev();
 			$html[5]=$this->pageList();
 			$html[6]=$this->nextlast();
 			//$html[7]=$this->goPage();
 
-			$fpage='<div style="font:12px \'\5B8B\4F53\',san-serif;">';
+			$fpage='<div style="font:18px \'\5B8B\4F53\',微軟粗黑體;">';
 			if(count($arr) < 1)
 				$arr=array(0, 1,2,3,4,5,6,7);
 				

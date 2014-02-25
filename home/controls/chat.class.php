@@ -27,7 +27,7 @@
             $chatRes = $chat->where("uid1=".$uid1." AND uid2=".$uid2)->select();
             if($chatRes && count($chatRes) > 0){
                 foreach ($chatRes as $key => $value) {
-                    $chatRes['create_time'] = date('Y-m-d H:m:i',$chatRes['create_time']);
+                    $chatRes[$key]['create_time'] = date('Y-m-d H:m:i',$chatRes['create_time']);
                 }
                 $ret['data'] = $chatRes;
             }
