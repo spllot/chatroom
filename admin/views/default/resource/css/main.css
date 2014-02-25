@@ -1879,3 +1879,6 @@ ul.roman-list {
 .panel .custom-search i{
   margin-top: -32px;
 }
+.panel .label-success{
+  font-size: 16px;
+}
