@@ -3,30 +3,63 @@
         //登录 POST传入 name pass
         function login(){
             $ret = array(
-                "errNo"=>0
+                "errNo"=>1
             );
             
             $name  = isset($_POST['name']) ? $_POST['name'] : "";
             $pass  = isset($_POST['pass']) ? $_POST['pass'] : "";
 
             $user  = D('user');
-            $where = "(nick='".$name."' OR name='".$name."') AND pass='".$pass."'";
+            $where = "(nick='".$name."' OR name='".$name."') AND pass='".md5($pass)."'";
             $userRes = $user->where($where)->select();
-            if(!$userRes || count($userRes) == 0){
-                $ret['errNo'] = 1;
+            if($userRes && count($userRes) == 1){
+                $ret['errNo'] = 0;
+                $ret['uid']   = intval($userRes[0]['uid']);
+                $ret['uname'] = $userRes[0]['name'];
             }
             echo json_encode($ret);
         }
         //注册 POST传入name nick pass email
         function reg(){
             $ret = array(
+                "errNo"=>1
+            );
+
+            $user  = D('user');
+            $_POST['pass'] = md5($_POST['pass']);
+            $_POST['reg_time'] = time();
+            $res = $user->insert($_POST);
+            if($res > 0){
+                $ret['errNo'] = 0;
+                $ret['uid']   = intval($res);
+                $ret['uname'] = $_POST['name'];
+            }
+            echo json_encode($ret);
+        }
+
+        function update(){
+            $ret = array(
                 "errNo"=>0
             );
 
             $user  = D('user');
-            $_POST['reg_time'] = time();
-            $user->insert($_POST);
+            $userRes = $user->update($_POST);
+            
+            echo json_encode($ret);
+        }
 
+        function getRank(){
+            $ret = array(
+                "errNo"=>1
+            );
+
+            $user  = D('user');
+            $userRes = $user->where($_GET['uid'])->select();
+            if($userRes && count($userRes) == 1){
+                $ret['errNo'] = 0;
+                $ret['rank']  = intval($userRes[0]['rank']);
+            }
+            
             echo json_encode($ret);
         }
 
@@ -118,4 +151,48 @@
 
             echo json_encode($ret);
         }
+
+        //获取好友信息 传入uid
+        function getFriends(){
+            $ret = array(
+                "errNo"=>0,
+                "data"=>array()
+            );
+
+            $friend  = D('friends');
+            $user = D('user');
+            $fres = $friend->where("uid1=".$_GET['uid'])->select();
+            foreach ($fres as $key => $item) {
+                $uid = $item['uid2'];
+                $userRes = $user->where("uid=".$uid)->select();
+                $ret['data'][$key] = $userRes[0]; 
+
+                $ret['data'][$key]['type'] = getUserType($userRes[0]['type']);
+                $ret['data'][$key]['info'] = $userRes[0]['info'];
+                $ret['data'][$key]['introduction'] = $userRes[0]['introduction'];
+                $ret['data'][$key]['status'] = getUserStatusInfoBytype($userRes[0]['status']);
+                $ret['data'][$key]['reg_time'] = date("Y-m-d H:i:s",$userRes[0]['reg_time']);
+
+                $area_level1_id = $userRes[0]['area_level1_id'];
+                $area_level2_id = $userRes[0]['area_level2_id'];
+               
+                $area_level1_name = "";
+                $area_level2_name = "";
+               
+
+                $area = D('area_level1');
+                $areaRes = $area->where('aid='.$area_level1_id)->select();
+                $area_level1_name   = $areaRes[0]['aname'];
+                $area_level1_arr[$area_level1_id]  = $areaRes[0]['aname'];
+               
+                $area = D('area_level2');
+                $areaRes = $area->where('aid='.$area_level2_id)->select();
+                $area_level2_name   = $areaRes[0]['aname'];
+                $area_level2_arr[$area_level2_id]  = $areaRes[0]['aname'];
+                
+                $ret['data'][$key]['area'] = $area_level1_name." ".$area_level2_name;
+            }
+
+            echo json_encode($ret);
+        } 
 	}
