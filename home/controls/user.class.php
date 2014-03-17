@@ -99,7 +99,33 @@
             }
 
             $userRes = $user->where($where)->select();
-            $ret['data'] = $userRes;
+            foreach ($userRes as $key => $item) {
+                $ret['data'][$key] = $item;
+                $ret['data'][$key]['type'] = getUserType($userRes[0]['type']);
+                $ret['data'][$key]['info'] = $userRes[0]['info'];
+                $ret['data'][$key]['introduction'] = $userRes[0]['introduction'];
+                $ret['data'][$key]['status'] = getUserStatusInfoBytype($userRes[0]['status']);
+                $ret['data'][$key]['reg_time'] = date("Y-m-d H:i:s",$userRes[0]['reg_time']);
+
+                $area_level1_id = $userRes[0]['area_level1_id'];
+                $area_level2_id = $userRes[0]['area_level2_id'];
+               
+                $area_level1_name = "";
+                $area_level2_name = "";
+
+                $area = D('area_level1');
+                $areaRes = $area->where('aid='.$area_level1_id)->select();
+                $area_level1_name   = $areaRes[0]['aname'];
+                $area_level1_arr[$area_level1_id]  = $areaRes[0]['aname'];
+               
+                $area = D('area_level2');
+                $areaRes = $area->where('aid='.$area_level2_id)->select();
+                $area_level2_name   = $areaRes[0]['aname'];
+                $area_level2_arr[$area_level2_id]  = $areaRes[0]['aname'];
+                
+                $ret['data'][$key]['area'] = $area_level1_name." ".$area_level2_name;
+            }
+            //$ret['data'] = $userRes;
             echo json_encode($ret);
         }
 
