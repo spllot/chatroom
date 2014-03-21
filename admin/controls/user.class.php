@@ -69,7 +69,7 @@
                 return;
             }
             $user = D('user');
-            $userRes  = $user->where($_GET['id'])->select();
+            $userRes  = $user->where($_GET['uid'])->select();
             $userInfo = $userRes[0];
 
             $userInfo['type'] = getUserType($userInfo['type']['type']);

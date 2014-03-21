@@ -97,6 +97,7 @@
             if($intr != ""){
                 $where = $where . " AND introduction like '%".$intr."%' ";
             }
+            $where = $where . " AND delele_flag=0";
 
             $userRes = $user->where($where)->select();
             foreach ($userRes as $key => $item) {
@@ -187,7 +188,7 @@
 
             $friend  = D('friends');
             $user = D('user');
-            $fres = $friend->where("uid1=".$_GET['uid'])->select();
+            $fres = $friend->where("uid1=".$_GET['uid']." AND delele_flag=0")->select();
             foreach ($fres as $key => $item) {
                 $uid = $item['uid2'];
                 $userRes = $user->where("uid=".$uid)->select();
